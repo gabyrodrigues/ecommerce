@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  resources :produtos_compras
+  resources :categorias_produtos
+  resources :compras
+  resources :categorias
+  resources :produtos do
+    collection do
+      get 'catalogo'
+    end
+  end
+
+  resources :clientes
+  resources :admins
+
   devise_for :usuarios
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  root to: 'produtos#catalogo'
 end

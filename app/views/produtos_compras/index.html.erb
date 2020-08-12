@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Produtos Compras</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Produto</th>
+      <th>Compra</th>
+      <th>Quantidade</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @produtos_compras.each do |produtos_compra| %>
+      <tr>
+        <td><%= produtos_compra.produto_id %></td>
+        <td><%= produtos_compra.compra_id %></td>
+        <td><%= produtos_compra.quantidade %></td>
+        <td><%= link_to 'Show', produtos_compra %></td>
+        <td><%= link_to 'Edit', edit_produtos_compra_path(produtos_compra) %></td>
+        <td><%= link_to 'Destroy', produtos_compra, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Produtos Compra', new_produtos_compra_path %>
