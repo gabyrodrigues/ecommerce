@@ -27,7 +27,10 @@
 /storage/*
 !/storage/.keep
 
-/public/assets
+# ignore public assets except fonts folder
+/public/assets/*
+!/public/assets/fonts
+
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.

@@ -1,29 +1,40 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Categorias Produtos</h1>
+<div class="container-info -admins">
+  <div class="heading">
+      <h1 class="title">Categorias dos Produtos</h1>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Categoria</th>
-      <th>Produto</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="wrapper">
+      <div class="info-table -admins">
+          <table class="table">
+              <thead>
+                  <tr class="table-heading">
+                    <th class="item -id">Produto ID</th>
+                      <th class="item -name">Produto</th>
+                      <th class="item -categoria">Categoria</th>
+                      <th class="item -actions"></th>
+                      <th></th>
+                  </tr>
+              </thead>
 
-  <tbody>
-    <% @categorias_produtos.each do |categorias_produto| %>
-      <tr>
-        <td><%= categorias_produto.categoria_id %></td>
-        <td><%= categorias_produto.produto_id %></td>
-        <td><%= link_to 'Show', categorias_produto %></td>
-        <td><%= link_to 'Edit', edit_categorias_produto_path(categorias_produto) %></td>
-        <td><%= link_to 'Destroy', categorias_produto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+              <tbody class="table-info">
+                <!-- <#% @categorias_produtos.each do |categorias_produto| %> -->
+                  <tr class="list">
+                      <td class="item -name" data-th="Produto ID">1</td>
+                      <td class="item -email" data-th="name">Biquini asa delta</td>
+                      <td class="item -email" data-th="categoria">Biquinis</td>
+                      <td class="actions" data-th="Ações">
+                          <%= link_to 'Ver', categorias_produto_path(1), class: "action -underlined -view" %>
+                          <%= link_to 'Editar', edit_categorias_produto_path(1), class: "action -underlined -edit" %>
+                          <%= link_to 'Apagar', categorias_produtos_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "action -underlined -delete" %>
+                      </td>
+                  </tr>
+                <!-- <%# end %> -->
+              </tbody>
+          </table>
+      </div>
 
-<br>
-
-<%= link_to 'New Categorias Produto', new_categorias_produto_path %>
+      <%= link_to '<i class="fa fa-plus"></i> Nova categoria de produto'.html_safe, new_categorias_produto_path, class: "action -new" %>
+  </div>
+</div>

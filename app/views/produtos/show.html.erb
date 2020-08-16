@@ -1,19 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @produto.nome %>
-</p>
+<div class="info-container -produto">
+	<div class="heading">
+		<h1 class="title">Produto</h1>
+	</div>
 
-<p>
-  <strong>Preco:</strong>
-  <%= @produto.preco %>
-</p>
+	<div class="wrapper">
+		<div class="info-box -produto">
+			<div class="content">
+				<p class="item -foto">
+					<%=  image_tag "produto-img2.png", class: "img", alt: "Imagem do produto" %>
+				</p>
 
-<p>
-  <strong>Quantidade:</strong>
-  <%= @produto.quantidade %>
-</p>
-
-<%= link_to 'Edit', edit_produto_path(@produto) %> |
-<%= link_to 'Back', produtos_path %>
+				<p class="item -name"><strong>Nome:</strong> Moda</p>
+				<p class="item -price"><strong>Preço:</strong> R$ 89,90</p>
+				<p class="item -qty"><strong>Quantidade estoque:</strong> 10</p>
+			</div>
+			<div class="actions">
+				<%= link_to 'Editar', edit_produto_path, class: "action -underlined -edit" %>
+				<%= link_to 'Voltar', produtos_path, class: "action -underlined -back" %>
+			</div>
+		</div>
+	</div>
+</div>

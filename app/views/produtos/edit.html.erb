@@ -1,6 +1,14 @@
-<h1>Editing Produto</h1>
+<div class="form-container -produto">
+    <div class="wrapper">
+        <div class="heading">
+            <h1 class="legend">Editando produto</h1>
+        </div>
 
-<%= render 'form', produto: @produto %>
+        <%= render 'form', produto: @produto %>
 
-<%= link_to 'Show', @produto %> |
-<%= link_to 'Back', produtos_path %>
+        <div class="actions">
+            <%= link_to 'Ver produto', produto_path, class: "action -show" %>
+            <%= link_to '<i class="fas fa-reply"></i> Voltar'.html_safe, produtos_path, class: "action -back" %>
+        </div>
+    </div>
+</div>

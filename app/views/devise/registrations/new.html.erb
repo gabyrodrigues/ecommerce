@@ -1,0 +1,29 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+	<div class="devise-form">
+		<fieldset class="fieldset -email">
+			<%= f.label :email, "Email", class: "label" %><br />
+			<%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+		</fieldset>
+
+		<fieldset class="fieldset -password">
+			<%= f.label :password, "Senha", class: "label" %>
+			<% if @minimum_password_length %>
+				<span class="note">(Mínimo de <%= @minimum_password_length %> caracteres)</span>
+			<% end %><br />
+			<%= f.password_field :password, autocomplete: "new-password", class: "input" %>
+		</fieldset>
+
+		<fieldset class="fieldset -confirm">
+			<%= f.label :password_confirmation, "Confirme sua senha", class: "label" %><br />
+			<%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input" %>
+		</fieldset>
+
+		<div class="actions">
+			<%= f.submit "Cadastrar", class: "action -signup" %>
+		</div>
+	</div>
+<% end %>
+
+<div class="action-links">
+	<%= render "devise/shared/links" %>
+</div>

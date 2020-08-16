@@ -1,15 +1,15 @@
 <%= form_with(model: produtos_compra, local: true) do |form| %>
-  <% if produtos_compra.errors.any? %>
+  <!-- <#% if produtos_compra.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(produtos_compra.errors.count, "error") %> prohibited this produtos_compra from being saved:</h2>
+      <h2><#%= pluralize(produtos_compra.errors.count, "error") %> prohibited this produtos_compra from being saved:</h2>
 
       <ul>
-        <% produtos_compra.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
+        <#% produtos_compra.errors.full_messages.each do |message| %>
+          <li><#%= message %></li>
+        <#% end %>
       </ul>
     </div>
-  <% end %>
+  <#% end %> -->
 
   <div class="field">
     <%= form.label :produto_id %>

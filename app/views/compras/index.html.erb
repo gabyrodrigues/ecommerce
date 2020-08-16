@@ -1,29 +1,46 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Compras</h1>
+<div class="container-info -compras">
+  <div class="heading">
+      <h1 class="title">Compras</h1>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Cliente</th>
-      <th>Data hora</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="wrapper">
+      <div class="info-table -compras">
+          <table class="table">
+              <thead>
+                  <tr class="table-heading">
+                      <th class="item -compra">Compra ID</th>
+                      <th class="item -name">Nome do cliente</th>
+                      <th class="item -email">Email do cliente</th>
+                      <th class="item -id">Cliente ID</th>
+                      <th class="item -datetime">Data/Hora da compra</th>
+                      <th class="item -produtos">Produtos da compra</th>
+                      <th class="item -actions"></th>
+                      <th></th>
+                  </tr>
+              </thead>
 
-  <tbody>
-    <% @compras.each do |compra| %>
-      <tr>
-        <td><%= compra.cliente_id %></td>
-        <td><%= compra.data_hora %></td>
-        <td><%= link_to 'Show', compra %></td>
-        <td><%= link_to 'Edit', edit_compra_path(compra) %></td>
-        <td><%= link_to 'Destroy', compra, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Compra', new_compra_path %>
+              <tbody class="table-info">
+                <!-- <#% @compras.each do |compra| %> -->
+                  <tr class="list">
+                    <td class="item -compra" data-th="Compra ID">1</td>
+                      <td class="item -name" data-th="Nome">Ciclano</td>
+                      <td class="item -email" data-th="Email">ciclano@gmail.com</td>
+                      <td class="item -id" data-th="ID">2</td>
+                      <td class="item -datetime" data-th="Data/Hora da compra">15/08/2020 22:00</td>
+                      <td class="actions -produtos" data-th="Produtos">
+                        <%= link_to 'Ver produtos', produtos_compras_path, class: "action -underlined -view" %>
+                      </td>
+                      <td class="actions" data-th="Ações">
+                          <%= link_to 'Ver', compra_path(1), class: "action -underlined -view" %>
+                          <%= link_to 'Editar', edit_compra_path(1), class: "action -underlined -edit" %>
+                          <%= link_to 'Apagar', compras_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "action -underlined -delete" %>
+                      </td>
+                  </tr>
+                <!-- <%# end %> -->
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>

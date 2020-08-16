@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Ecommerce</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <!-- Main css styles -->
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<head>
+	<title>Ecommerce</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<%= csrf_meta_tags %>
+	<%= csp_meta_tag %>
 
-    <!-- Main javascript files -->
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  </head>
+	<%= favicon_link_tag asset_path('favicon.png') %>
 
-  <body>
-    <%= render 'layouts/menu' %>
-    <div style="padding-left: 50px; padding-right: 50px; padding-top: 20px">
-      <%= yield %>
-    </div>
-  </body>
+	<!-- Main css styles -->
+	<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+	<!-- Main javascript files -->
+	<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body class="page-view">
+	<div class="page-wrapper">
+		<%= render 'layouts/menu' %>
+
+		<main class="page-main">
+			<%= yield %>
+		</main>
+	</div>
+
+	<%= javascript_pack_tag 'scripts' %>
+</body>
+
 </html>

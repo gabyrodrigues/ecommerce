@@ -1,4 +1,5 @@
 class CategoriasController < ApplicationController
+  skip_before_action :authenticate_usuario!
   before_action :set_categoria, only: [:show, :edit, :update, :destroy]
 
   # GET /categorias
@@ -40,15 +41,15 @@ class CategoriasController < ApplicationController
   # PATCH/PUT /categorias/1
   # PATCH/PUT /categorias/1.json
   def update
-    respond_to do |format|
-      if @categoria.update(categoria_params)
-        format.html { redirect_to @categoria, notice: 'Categoria was successfully updated.' }
-        format.json { render :show, status: :ok, location: @categoria }
-      else
-        format.html { render :edit }
-        format.json { render json: @categoria.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @categoria.update(categoria_params)
+    #     format.html { redirect_to @categoria, notice: 'Categoria was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @categoria }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @categoria.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /categorias/1
@@ -64,7 +65,7 @@ class CategoriasController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_categoria
-      @categoria = Categoria.find(params[:id])
+      #@categoria = Categoria.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

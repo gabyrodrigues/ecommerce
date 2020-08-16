@@ -1,5 +1,14 @@
-<h1>New Cliente</h1>
+<div class="form-container -cliente">
+    <div class="wrapper">
+        <div class="heading">
+            <h1 class="legend">Cadastro de cliente</h1>
+            <p class="note">Cadastre um cliente na loja e ele recebe um email de confirmação de cadastro</p>
+        </div>
 
-<%= render 'form', cliente: @cliente %>
+        <%= render 'form', cliente: @cliente %>
 
-<%= link_to 'Back', clientes_path %>
+        <div class="actions">
+            <%= link_to '<i class="fas fa-reply"></i> Voltar'.html_safe, clientes_path, class: "action -back" %>
+        </div>
+    </div>
+</div>

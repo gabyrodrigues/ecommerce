@@ -1,0 +1,33 @@
+//font awesome
+$fa-font-path: "@fortawesome/fontawesome-free/webfonts";
+@import "@fortawesome/fontawesome-free/css/all.css";
+
+@font-face {
+    font-family: 'Palanquin-Light';
+	src: url('fonts/palanquin/palanquin-light.woff') format('woff'),
+    url('fonts/palanquin/palanquin-light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Palanquin';
+	src: url('fonts/palanquin/palanquin-regular.woff') format('woff'),
+    url('fonts/palanquin/palanquin-regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Palanquin-Medium';
+	src: url('fonts/palanquin/palanquin-medium.woff') format('woff'),
+    url('fonts/palanquin/palanquin-medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Palanquin-Semibold';
+	src: url('fonts/palanquin/palanquin-semibold.woff') format('woff'),
+    url('fonts/palanquin/palanquin-semibold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Palanquin-Bold';
+	src: url('fonts/palanquin/palanquin-bold.woff') format('woff'),
+    url('fonts/palanquin/palanquin-bold.ttf') format('truetype');
+}

@@ -1,27 +1,236 @@
-<%= form_with(model: compra, local: true) do |form| %>
-  <% if compra.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(compra.errors.count, "error") %> prohibited this compra from being saved:</h2>
+<%= form_with(model: @compra, local: true, id: "regForm") do |form| %>
+    <div class="checkout-progress">
+        <div class="item -active">
+            <span class="progress">
+            </span>
+            <p class="title">
+                Carrinho
+            </p>
+        </div>
 
-      <ul>
-        <% compra.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <div class="item">
+            <span class="progress">
+            </span>
+            <p class="title">
+                Entrega
+            </p>
+        </div>
+
+        <div class="item">
+            <span class="progress">
+            </span>
+            <p class="title">
+                Confirmação
+            </p>
+        </div>
+
+        <div class="item">
+            <span class="progress">
+            </span>
+            <p class="title">
+                Pagamento
+            </p>
+        </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :cliente_id %>
-    <%= form.text_field :cliente_id %>
-  </div>
+    <div class="checkout-wizard">
+        <div class="wrapper">
+            <div class="tab">
+                <div class="summary-container">
+                    <div class="checkout-products">
+                        <ul class="list">
+                            <li class="product">
+                                <div class="minimal-details">
+                                    <div class="image">
+                                        <span class="qty">1</span>
 
-  <div class="field">
-    <%= form.label :data_hora %>
-    <%= form.datetime_select :data_hora %>
-  </div>
+                                        <%=  image_tag "produto-img2.png", class: "img", alt: "Imagem do produto" %>
+                                    </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+                                    <div class="attributes">
+                                        <h3 class="name">Camiseta Cerveja Idiomas</h3>
+                                    </div>
+
+                                    <div class="price">
+                                        <span class="subtotal">R$ 89,90</span>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="product">
+                                <div class="minimal-details">
+                                    <div class="image">
+                                        <span class="qty">3</span>
+
+                                        <%=  image_tag "produto-img.png", class: "img", alt: "Imagem do produto" %>
+                                    </div>
+
+                                    <div class="attributes">
+                                        <h3 class="name">Camiseta Caça-Palavras</h3>
+                                    </div>
+
+                                    <div class="price">
+                                        <span class="subtotal">R$ 89,90</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="heading">
+                        <h2 class="title">Subtotal</h2>
+                        <h2 class="price">R$249,70</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="tab">
+                <h1 class="legend">Informações para entrega</h1>
+
+                <fieldset class="fieldset -cpf">
+                    <label class="label" for="cpf">
+                        CPF:
+                    </label>
+                    <input class="input" type="text" name="cpf">
+                </fieldset>
+
+                <fieldset class="fieldset -cep">
+                    <label class="label" for="cep">
+                        CEP:
+                    </label>
+                    <input class="input" type="text" name="cep">
+                </fieldset>
+
+                <fieldset class="fieldset -address">
+                    <label class="label" for="address">
+                        Endereço:
+                    </label>
+                    <input class="input" type="text" name="address">
+                </fieldset>
+
+                <fieldset class="fieldset -bairro">
+                    <label class="label" for="bairro">
+                        Bairro:
+                    </label>
+                    <input class="input" type="text" name="bairro">
+                </fieldset>
+
+                <fieldset class="fieldset -city">
+                    <label class="label" for="city">
+                        Cidade:
+                    </label>
+                    <input class="input" type="text" name="city">
+                </fieldset>
+
+                <fieldset class="fieldset -estado">
+                    <label class="label" for="estado">
+                        Estado:
+                    </label>
+                    <select class="select" name="estado">
+                        <option value="">Selecione um Estado</option>
+                        <option value="Acre">Acre</option>
+                        <option value="Alagoas">Alagoas</option>
+                        <option value="Amapá">Amapá</option>
+                        <option value="Amazonas">Amazonas</option>
+                        <option value="Bahia">Bahia</option>
+                        <option value="Ceará">Ceará</option>
+                        <option value="Distrito Federal">Distrito Federal</option>
+                        <option value="Espírito Santo">Espírito Santo</option>
+                        <option value="Goiás">Goiás</option>
+                        <option value="Maranhão">Maranhão</option>
+                        <option value="Mato Grosso">Mato Grosso</option>
+                        <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+                        <option value="Minas Gerais">Minas Gerais</option>
+                        <option value="Pará">Pará</option>
+                        <option value="Paraíba">Paraíba</option>
+                        <option value="Paraná">Paraná</option>
+                        <option value="Pernambuco">Pernambuco</option>
+                        <option value="Piauí">Piauí</option>
+                        <option value="Rio de Janeiro">Rio de Janeiro</option>
+                        <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+                        <option value="Rio Grande do Sul">Rio Grande do Sul</option>
+                        <option value="Rondônia">Rondônia</option>
+                        <option value="Roraima">Roraima</option>
+                        <option value="Santa Catarina">Santa Catarina</option>
+                        <option value="São Paulo">São Paulo</option>
+                        <option value="Sergipe">Sergipe</option>
+                        <option value="Tocantins">Tocantins</option>
+                    </select>
+                </fieldset>
+            </div>
+            <div class="tab">
+                <h1 class="legend">Confirmar dados</h1>
+
+                <div class="summary-container">
+                    <div class="info">
+                        <h2 class="title">Subtotal</h2>
+                        <h2 class="price">R$249,70</h2>
+                    </div>
+
+                    <div class="info">
+                        <h2 class="title">Frete</h2>
+                        <h2 class="price">R$10,00</h2>
+                    </div>
+
+                    <div class="info">
+                        <h2 class="title">Total</h2>
+                        <h2 class="price">R$259,70</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="tab">
+                <h1 class="legend">Pagamento</h1>
+
+                <div class="payment-container">
+                    <div class="payment-forms">
+                        <fieldset class="fieldset">
+                            <label class="label">Boleto
+                                <%= form.radio_button :forma_pagamento, "Boleto", class: "radio", id: "boleto", :checked => true %>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="label">Cartão de Crédito
+                                <%= form.radio_button :forma_pagamento, "Cartão de Crédito", id: "credit", class: "radio" %>
+                                <span class="checkmark"></span>
+                            </label>
+                        </fieldset>
+                    </div>
+
+                    <div class="card-container -visible">
+                        <fieldset class="fieldset -card">
+                            <%= form.label :numero_cartao, "Número do Cartão", class: "label" %>
+                            <%= form.text_field :numero_cartao, class: "input", placeholder: "0000 0000 0000 0000" %>
+                        </fieldset>
+
+                        <fieldset class="fieldset -name">
+                            <%= form.label :nome_titular, "Nome do titular", class: "label" %>
+                            <%= form.text_field :nome_titular, class: "input" %>
+                        </fieldset>
+
+                        <br />
+
+                        <fieldset class="fieldset -expire">
+                            <%= form.label :data_validade, "Data de validade", class: "label" %>
+                            <%= form.text_field :data_validade, class: "input", placeholder: "00/00" %>
+                        </fieldset>
+
+                        <fieldset class="fieldset -cvv">
+                            <%= form.label :cvv, "CVV", class: "label" %>
+                            <%= form.text_field :cvv, class: "input", placeholder: "000" %>
+                        </fieldset>
+                    </div>
+
+                    <div class="boleto-container">
+                        <div class="actions">
+                            <a href="#" class="action -download">
+                                <i class="fas fa-download"></i>
+                                Baixar boleto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <button type="button" class="action -prev" id="prev_button">Voltar</button>
+                <button type="button" class="action -next" id="next_button">Próximo</button>
+            </div>
+        </div>
+    </div>
 <% end %>

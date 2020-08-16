@@ -1,6 +1,12 @@
-<h1>Editing Categoria</h1>
+<div class="form-container -categoria">
+    <div class="wrapper">
+        <h1 class="legend">Editando categoria</h1>
 
-<%= render 'form', categoria: @categoria %>
+        <%= render 'form', categoria: @categoria %>
 
-<%= link_to 'Show', @categoria %> |
-<%= link_to 'Back', categorias_path %>
+        <div class="actions">
+            <%= link_to 'Ver categoria', categoria_path, class: "action -show" %>
+            <%= link_to '<i class="fas fa-reply"></i> Voltar'.html_safe, categorias_path, class: "action -back" %>
+        </div>
+    </div>
+</div>

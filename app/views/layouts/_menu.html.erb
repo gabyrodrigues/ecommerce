@@ -1,0 +1,178 @@
+<header class="page-header">
+    <div class="content">
+        <span data-action="toggle-nav" class="action -toggle">
+        </span>
+
+        <%= link_to catalogo_produtos_path, class: "logo" do %>
+            <h1 class="title">
+                <i class="fas fa-tags"></i>
+                Ecommerce
+            </h1>
+        <% end %>
+
+        <nav class="menu-navigation">
+            <div class="header-profile -logged">
+                <div class="header">
+                    <a href="#" class="photo">
+                        <%=  image_tag "user-placeholder.png", class: "img", alt: "User profile photo" %>
+                    </a>
+                    <div class="text">
+
+                        <h3 class="note">Olá, <span class="name">visitante</span></h3>
+                        <div class="info">
+                            <a href="#" class="link">Entre</a>
+                            <span>para aproveitar as ofertas!</span>
+                        </div>
+                        <p class="email">gabyrlima.99@gmail.com</p>
+                    </div>
+                </div>
+                <div class="account-links">
+                    <ul class="list">
+                        <li class="item">
+                            <%= link_to 'Ver Perfil', edit_usuario_registration_path, class: "link -underlined"%>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <ul class="list">
+                <li class="menu-item">
+                    <%= link_to 'Categorias', categorias_path, class: "link" %>
+                </li>
+
+                <li class="menu-item">
+                    <%= link_to 'Produtos', produtos_path, class: "link" %>
+                </li>
+
+                <li class="menu-item">
+                    <%= link_to 'Administradores', admins_path, class: "link" %>
+                </li>
+
+                <li class="menu-item">
+                    <%= link_to 'Clientes', clientes_path, class: "link" %>
+                </li>
+
+                <li class="menu-item">
+                    <%= link_to 'Compras', compras_path, class: "link" %>
+                </li>
+            </ul>
+            <div class="menu-bottom">
+                <div class="links">
+                    <a href="#" class="action -underlined -signout">Sair</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="user-space -logged">
+            <button class="button" id="user_button">
+            </button>
+
+            <div class="options">
+                <ul class="list">
+                    <li class="item"><%= link_to 'Perfil', edit_usuario_registration_path, class: "link -underlined"%></li>
+                    <li class="item"><%= link_to 'Minhas compras', minhas_compras_compras_path, class: "link -underlined"%></li>
+                    <li class="item"><%= link_to 'Login', usuario_session_path, class: "link -underlined" %></li>
+                    <li class="item"><%= link_to 'Cadastre-se', new_usuario_registration_path, class: "link -underlined" %></li>
+                    <li class="item"><a class="link -underlined" href="#">Sair</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="cart-container">
+            <button class="button" id="cart_button">
+            </button>
+
+            <div class="content">
+                <div class="finish-shopping">
+                    <div class="prices">
+                        <span class="label">Subtotal</span>
+                        <span class="price">R$ 199,80</span>
+                    </div>
+
+                    <div class="finish">
+                        <%= link_to 'Finalizar compra', checkout_compras_path, class: "action" %>
+                    </div>
+                </div>
+
+                <div class="added-products">
+                    <ul class="list">
+                        <li class="product">
+                            <div class="minimal-details">
+                                <div class="image">
+                                    <span class="qty">1</span>
+
+                                    <a href="" class="link">
+                                        <%=  image_tag "produto-img2.png", class: "img", alt: "Imagem do produto" %>
+                                    </a>
+                                </div>
+
+                                <div class="attributes">
+                                    <%= link_to 'Biquini crochê', view_produtos_path, class: "name -underlined"%>
+                                </div>
+
+                                <div class="price">
+                                    <span class="subtotal">R$ 49,90</span>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#" class="action -add"></a>
+                                <a href="#" class="action -remove"></a>
+                            </div>
+                        </li>
+
+                        <li class="product">
+                            <div class="minimal-details">
+                                <div class="image">
+                                    <span class="qty">3</span>
+
+                                    <a href="" class="link">
+                                        <%=  image_tag "produto-img.png", class: "img", alt: "Imagem do produto" %>
+                                    </a>
+                                </div>
+
+                                <div class="attributes">
+                                    <%= link_to 'Maiô colorido', view_produtos_path, class: "name -underlined"%>
+                                </div>
+
+                                <div class="price">
+                                    <span class="subtotal">R$ 90,00</span>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#" class="action -add"></a>
+                                <a href="#" class="action -remove"></a>
+                            </div>
+                        </li>
+
+                        <li class="product">
+                            <div class="minimal-details">
+                                <div class="image">
+                                    <span class="qty">2</span>
+
+                                    <a href="" class="link">
+                                        <%=  image_tag "produto-img2.png", class: "img", alt: "Imagem do produto" %>
+                                    </a>
+                                </div>
+
+                                <div class="attributes">
+                                    <%= link_to 'Saída de banho', view_produtos_path, class: "name -underlined"%>
+                                </div>
+
+                                <div class="price">
+                                    <span class="subtotal">R$ 19,90</span>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#" class="action -add"></a>
+                                <a href="#" class="action -remove"></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="cart-options">
+                    <a href="#" class="action">Limpar carrinho</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

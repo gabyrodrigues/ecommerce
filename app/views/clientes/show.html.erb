@@ -1,34 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Usuario:</strong>
-  <%= @cliente.usuario_id %>
-</p>
+<div class="info-container -cliente">
+	<div class="heading">
+		<h1 class="title">Cliente</h1>
+	</div>
 
-<p>
-  <strong>Cpf:</strong>
-  <%= @cliente.cpf %>
-</p>
-
-<p>
-  <strong>Endereco:</strong>
-  <%= @cliente.endereco %>
-</p>
-
-<p>
-  <strong>Bairro:</strong>
-  <%= @cliente.bairro %>
-</p>
-
-<p>
-  <strong>Cidade:</strong>
-  <%= @cliente.cidade %>
-</p>
-
-<p>
-  <strong>Estado:</strong>
-  <%= @cliente.estado %>
-</p>
-
-<%= link_to 'Edit', edit_cliente_path(@cliente) %> |
-<%= link_to 'Back', clientes_path %>
+	<div class="wrapper">
+		<div class="info-box -cliente">
+			<div class="content">
+        <p class="item -name"><strong>Nome:</strong> Ciclano</p>
+        <p class="item -email"><strong>Email:</strong> ciclano@gmail.com</p>
+        <p class="item -cpf"><strong>CPF:</strong> 000.000.000-05</p>
+        <p class="item -endereco"><strong>Endereço:</strong> Rua 100, Nº 200</p>
+        <p class="item -bairro"><strong>Bairro:</strong> Messejana</p>
+        <p class="item -city"><strong>Cidade:</strong> Fortaleza</p>
+        <p class="item -estado"><strong>Estado:</strong> Ceará</p>
+			</div>
+			<div class="actions">
+				<%= link_to 'Editar', edit_cliente_path(1), class: "action -underlined -edit" %>
+				<%= link_to 'Voltar', clientes_path, class: "action -underlined -back" %>
+			</div>
+		</div>
+	</div>
+</div>

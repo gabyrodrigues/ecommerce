@@ -1,5 +1,13 @@
-<h1>New Categoria</h1>
-
-<%= render 'form', categoria: @categoria %>
-
-<%= link_to 'Back', categorias_path %>
+<div class="form-container -categoria">
+    <div class="wrapper">
+        <div class="heading">
+            <h1 class="legend">Cadastro de categoria</h1>
+        </div>
+        
+        <%= render 'form', categoria: @categoria %>
+        
+        <div class="actions">
+            <%= link_to '<i class="fas fa-reply"></i> Voltar'.html_safe, categorias_path, class: "action -back" %>
+        </div>
+    </div>
+</div>

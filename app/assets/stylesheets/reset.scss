@@ -60,3 +60,26 @@ table {
 a {
 	text-decoration: none !important;
 }
+
+input {
+    outline: 0 !important;
+    border-radius: 0;   
+    padding: 10px 15px;
+
+    &:focus {
+        border-color: #563F40 !important;
+	}
+	
+	&::placeholder {
+        color: #949494;
+        font-style: italic;
+    }
+}
+
+button {
+    background: transparent;
+    border: 0;
+    font-family: inherit;
+    outline: 0 !important;
+    padding: 0;
+}

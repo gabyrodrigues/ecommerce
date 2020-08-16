@@ -1,27 +1,41 @@
-<%= form_with(model: categorias_produto, local: true) do |form| %>
-  <% if categorias_produto.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(categorias_produto.errors.count, "error") %> prohibited this categorias_produto from being saved:</h2>
+<%= form_with(model: categorias_produto, local: true, class: "form-register") do |form| %>
+	<!-- <#% if categorias_produto.errors.any? %>
+	<div id="error_explanation">
+		<h2><#%= pluralize(categorias_produto.errors.count, "error") %> prohibited this categorias_produto from being saved:
+		</h2>
 
-      <ul>
-        <% categorias_produto.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+		<ul>
+			<#% categorias_produto.errors.full_messages.each do |message| %>
+			<li><#%= message %></li>
+			<#% end %>
+		</ul>
+	</div>
+	<#% end %> -->
 
-  <div class="field">
-    <%= form.label :categoria_id %>
-    <%= form.text_field :categoria_id %>
-  </div>
+	<div class="block -categoriasprodutos">
+		<fieldset class="fieldset -produto">
+			<%= form.label :produto_id, "Produto", class: "label" %>
+			<select class="select" name="produto_id" id="produto_id">
+				<option value="">Selecione um produto</option>
+				<option value="1">Biquini asa delta</option>
+				<option value="2">Biquini crochê</option>
+				<option value="3">Maiô colorido</option>
+				<option value="4">Saída de banho</option>
+			</select>
+		</fieldset>
 
-  <div class="field">
-    <%= form.label :produto_id %>
-    <%= form.text_field :produto_id %>
-  </div>
+		<fieldset class="fieldset -categoria">
+			<%= form.label :categoria_id, "Categoria", class: "label" %>
+			<select class="select" name="categoria_id" id="categoria_id">
+				<option value="">Selecione uma Categoria</option>
+				<option value="1">Biquinis</option>
+				<option value="2">Maiôs</option>
+				<option value="3">Vestuário</option>
+			</select>
+		</fieldset>
+	</div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+	<div class="actions">
+		<%= form.submit "Salvar", class: "action -save" %>
+	</div>
 <% end %>

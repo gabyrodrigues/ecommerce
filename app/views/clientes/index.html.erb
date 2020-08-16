@@ -1,37 +1,48 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Clientes</h1>
+<div class="container-info -clientes">
+  <div class="heading">
+      <h1 class="title">Clientes</h1>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Usuario</th>
-      <th>Cpf</th>
-      <th>Endereco</th>
-      <th>Bairro</th>
-      <th>Cidade</th>
-      <th>Estado</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="wrapper">
+      <div class="info-table -clientes">
+          <table class="table">
+              <thead>
+                  <tr class="table-heading">
+                      <th class="item -name">Nome</th>
+                      <th class="item -email">Email</th>
+                      <th class="item -cpf">CPF</th>
+                      <th class="item -address">Endereço</th>
+                      <th class="item -bairro">Bairro</th>
+                      <th class="item -cidade">Cidade</th>
+                      <th class="item -estado">Estado</th>
+                      <th class="item -actions"></th>
+                      <th></th>
+                  </tr>
+              </thead>
 
-  <tbody>
-    <% @clientes.each do |cliente| %>
-      <tr>
-        <td><%= cliente.usuario_id %></td>
-        <td><%= cliente.cpf %></td>
-        <td><%= cliente.endereco %></td>
-        <td><%= cliente.bairro %></td>
-        <td><%= cliente.cidade %></td>
-        <td><%= cliente.estado %></td>
-        <td><%= link_to 'Show', cliente %></td>
-        <td><%= link_to 'Edit', edit_cliente_path(cliente) %></td>
-        <td><%= link_to 'Destroy', cliente, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+              <tbody class="table-info">
+                <!-- <#% @clientes.each do |cliente| %> -->
+                  <tr class="list">
+                      <td class="item -name" data-th="Nome">Fulano</td>
+                      <td class="item -email" data-th="Email">fulano@gmail.com</td>
+                      <td class="item -cpf" data-th="CPF">000.000.000-00</td>
+                      <td class="item -address" data-th="Endereço">Rua 100, Nº 200</td>
+                      <td class="item -bairro" data-th="Bairro">Messejana</td>
+                      <td class="item -city" data-th="Cidade">Fortaleza</td>
+                      <td class="item -estado" data-th="Estado">Ceará</td>
+                      <td class="actions" data-th="Ações">
+                          <%= link_to 'Ver', cliente_path(1), class: "action -underlined -view" %>
+                          <%= link_to 'Editar', edit_cliente_path(1), class: "action -underlined -edit" %>
+                          <%= link_to 'Apagar', clientes_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "action -underlined -delete" %>
+                      </td>
+                  </tr>
+                <!-- <%# end %> -->
+              </tbody>
+          </table>
+      </div>
 
-<br>
-
-<%= link_to 'New Cliente', new_cliente_path %>
+      <%= link_to '<i class="fa fa-plus"></i> Novo cliente'.html_safe, new_cliente_path, class: "action -new" %>
+  </div>
+</div>

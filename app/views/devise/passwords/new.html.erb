@@ -1,0 +1,16 @@
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+	<div class="devise-form">
+		<fieldset class="fieldset -email">
+			<%= f.label :email, "Email", class: "label" %><br />
+			<%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+		</fieldset>
+
+		<div class="actions">
+			<%= f.submit "Recuperar conta por email", class: "action -forgot" %>
+		</div>
+	</div>
+<% end %>
+
+<div class="action-links">
+	<%= render "devise/shared/links" %>
+</div>

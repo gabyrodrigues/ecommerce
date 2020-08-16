@@ -1,14 +1,60 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Cliente:</strong>
-  <%= @compra.cliente_id %>
-</p>
+<div class="info-container -compra">
+	<div class="heading">
+		<h1 class="title">Detalhes da compra</h1>
+	</div>
 
-<p>
-  <strong>Data hora:</strong>
-  <%= @compra.data_hora %>
-</p>
+	<div class="wrapper">
+		<div class="info-box -compra">
+			<div class="content">
+        <p class="item -name"><strong>Nome do cliente:</strong> Ciclano</p>
+        <p class="item -datetime"><strong>Compra realizada em:</strong> 14/07/2020 - 23:00</p>
+        <p class="item -endereco"><strong>Endereço:</strong> Rua 100, Nº 200</p>
+        <p class="item -bairro"><strong>Bairro:</strong> Messejana</p>
+        <p class="item -city"><strong>Cidade:</strong> Fortaleza</p>
+        <p class="item -estado"><strong>Estado:</strong> Ceará</p>
+        <p class="item -status"><strong>Status:</strong> Solicitado</p>
+        <p class="item -status"><strong>Forma de pagamento:</strong> Boleto</p>
+      </div>
+      
+			<div class="actions">
+				<%= link_to 'Editar', edit_compra_path(1), class: "action -underlined -edit" %>
+				<%= link_to 'Voltar', compras_path, class: "action -underlined -back" %>
+			</div>
+		</div>
+	</div>
+</div>
 
-<%= link_to 'Edit', edit_compra_path(@compra) %> |
-<%= link_to 'Back', compras_path %>
+<br>
+
+<div class="container-info -produtoscompras">
+  <div class="heading">
+      <h1 class="title">Produtos da compra</h1>
+  </div>
+
+  <div class="wrapper">
+      <div class="info-table -produtoscompras">
+          <table class="table">
+              <thead>
+                  <tr class="table-heading">
+                      <th class="item -name">Nome do produto</th>
+                      <th class="item -qty">Quantidade</th>
+                      <th class="item -frete">Frete fixo</th>
+                      <th></th>
+                  </tr>
+              </thead>
+
+              <tbody class="table-info">
+                <!-- <#% @produtos_compras.each do |produto_compra| %> -->
+                  <tr class="list">
+                      <td class="item -name" data-th="Nome do produto">Biquini asa delta</td>
+                      <td class="item -qty" data-th="Quantidade">10</td>
+                      <td class="item -frete" data-th="Frete">R$ 10,00</td>
+                  </tr>
+                <!-- <%# end %> -->
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>

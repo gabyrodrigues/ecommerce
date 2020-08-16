@@ -1,22 +1,23 @@
-<%= form_with(model: categoria, local: true) do |form| %>
-  <% if categoria.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(categoria.errors.count, "error") %> prohibited this categoria from being saved:</h2>
+<%= form_with(model: categoria, local: true, class: "form-register") do |form| %>
+	<!-- <#% if categoria.errors.any? %>
+		<div id="error_explanation">
+			<h2><%#= pluralize(categoria.errors.count, "error") %> prohibited this categoria from being saved:</h2>
 
-      <ul>
-        <% categoria.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+			<ul>
+				<#% categoria.errors.full_messages.each do |message| %>
+				<li><#%= message %></li>
+				<#% end %>
+			</ul>
+		</div>
+	<#% end %> -->
+	<div class="block -categoria">
+		<fieldset class="fieldset -name">
+			<%= form.label :nome, "Nome", class: "label" %>
+			<%= form.text_field :nome, class: "input", name: "nome", id: "nome", :required => true %>
+		</fieldset>
+	</div>
 
-  <div class="field">
-    <%= form.label :nome %>
-    <%= form.text_field :nome %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+	<div class="actions">
+		<%= form.submit "Salvar", class: "action -save" %>
+	</div>
 <% end %>

@@ -1,4 +1,5 @@
 class ClientesController < ApplicationController
+  skip_before_action :authenticate_usuario!
   before_action :set_cliente, only: [:show, :edit, :update, :destroy]
 
   # GET /clientes
@@ -40,15 +41,15 @@ class ClientesController < ApplicationController
   # PATCH/PUT /clientes/1
   # PATCH/PUT /clientes/1.json
   def update
-    respond_to do |format|
-      if @cliente.update(cliente_params)
-        format.html { redirect_to @cliente, notice: 'Cliente was successfully updated.' }
-        format.json { render :show, status: :ok, location: @cliente }
-      else
-        format.html { render :edit }
-        format.json { render json: @cliente.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @cliente.update(cliente_params)
+    #     format.html { redirect_to @cliente, notice: 'Cliente was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @cliente }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @cliente.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /clientes/1
@@ -64,7 +65,7 @@ class ClientesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cliente
-      @cliente = Cliente.find(params[:id])
+      #@cliente = Cliente.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

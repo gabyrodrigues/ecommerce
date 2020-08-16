@@ -1,6 +1,14 @@
-<h1>Editing Cliente</h1>
+<div class="form-container -cliente">
+    <div class="wrapper">
+        <div class="heading">
+            <h1 class="legend">Editando cliente</h1>
+        </div>
 
-<%= render 'form', cliente: @cliente %>
+        <%= render 'form', cliente: @cliente %>
 
-<%= link_to 'Show', @cliente %> |
-<%= link_to 'Back', clientes_path %>
+        <div class="actions">
+            <%= link_to 'Ver cliente', cliente_path, class: "action -show" %>
+            <%= link_to '<i class="fas fa-reply"></i> Voltar'.html_safe, clientes_path, class: "action -back" %>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,14 @@
-<h1>Editing Categorias Produto</h1>
+<div class="form-container -categoriasprodutos">
+    <div class="wrapper">
+        <div class="heading">
+            <h1 class="legend">Editando categoria de produto</h1>
+        </div>
 
-<%= render 'form', categorias_produto: @categorias_produto %>
+        <%= render 'form', categorias_produto: @categorias_produto %>
 
-<%= link_to 'Show', @categorias_produto %> |
-<%= link_to 'Back', categorias_produtos_path %>
+        <div class="actions">
+            <%= link_to 'Ver categoria do produto', categorias_produto_path(1), class: "action -show" %> 
+            <%= link_to '<i class="fas fa-reply"></i> Voltar'.html_safe, categorias_produtos_path, class: "action -back" %>
+        </div>
+    </div>
+</div>

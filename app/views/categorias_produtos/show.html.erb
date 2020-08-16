@@ -1,14 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Categoria:</strong>
-  <%= @categorias_produto.categoria_id %>
-</p>
+<div class="info-container -categoriasprodutos">
+	<div class="heading">
+		<h1 class="title">Categoria de produto</h1>
+	</div>
 
-<p>
-  <strong>Produto:</strong>
-  <%= @categorias_produto.produto_id %>
-</p>
-
-<%= link_to 'Edit', edit_categorias_produto_path(@categorias_produto) %> |
-<%= link_to 'Back', categorias_produtos_path %>
+	<div class="wrapper">
+		<div class="info-box -categoriasprodutos">
+			<div class="content">
+        <p class="item -name"><strong>Nome da categoria:</strong> Moda</p>
+        <p class="item -name"><strong>Nome do produto:</strong> Biquini asa delta</p>
+			</div>
+			<div class="actions">
+				<%= link_to 'Editar', edit_categorias_produto_path(1), class: "action -underlined -edit" %>
+				<%= link_to 'Voltar', categorias_produtos_path, class: "action -underlined -back" %>
+			</div>
+		</div>
+	</div>
+</div>

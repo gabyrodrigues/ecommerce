@@ -1,32 +1,38 @@
-<%= form_with(model: produto, local: true) do |form| %>
-  <% if produto.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(produto.errors.count, "error") %> prohibited this produto from being saved:</h2>
+<%= form_with(model: produto, local: true, class: "form-register") do |form| %>
+	<!-- <#% if produto.errors.any? %>
+		<div id="error_explanation">
+			<h2><#%= pluralize(produto.errors.count, "error") %> prohibited this produto from being saved:</h2>
 
-      <ul>
-        <% produto.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+			<ul>
+				<#% produto.errors.full_messages.each do |message| %>
+				<li><#%= message %></li>
+				<#% end %>
+			</ul>
+		</div>
+	<#% end %> -->
+	<div class="block -produtos">
+		<fieldset class="fieldset -foto">
+			<%= form.label :foto, "Foto do produto", class: "label" %>
+			<%= form.file_field :foto, class: "input", name: "foto", id: "foto", :required => true %>
+		</fieldset>
 
-  <div class="field">
-    <%= form.label :nome %>
-    <%= form.text_field :nome %>
-  </div>
+		<fieldset class="fieldset -name">
+			<%= form.label :nome, "Nome", class: "label" %>
+			<%= form.text_field :nome, class: "input", name: "nome", id: "nome", :required => true %>
+		</fieldset>
+		
+		<fieldset class="fieldset -qty">
+			<%= form.label :quantidade, "Quantidade estoque", class: "label" %>
+			<%= form.number_field :quantidade, class: "input", name: "qty", id: "qty", :required => true %>
+		</fieldset>
+		   
+		<fieldset class="fieldset -price">
+			<%= form.label :preco, "Preço unitário", class: "label" %>
+			<%= form.text_field :preco, class: "input", name: "price", id: "price", :required => true %>
+		</fieldset>
+	</div>
 
-  <div class="field">
-    <%= form.label :preco %>
-    <%= form.text_field :preco %>
-  </div>
-
-  <div class="field">
-    <%= form.label :quantidade %>
-    <%= form.number_field :quantidade %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+	<div class="actions">
+		<%= form.submit "Salvar", class: "action -save" %>
+	</div>
 <% end %>

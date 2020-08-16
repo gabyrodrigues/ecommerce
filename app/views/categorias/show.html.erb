@@ -1,9 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @categoria.nome %>
-</p>
+<div class="info-container -categoria">
+	<div class="heading">
+		<h1 class="title">Categoria</h1>
+	</div>
 
-<%= link_to 'Edit', edit_categoria_path(@categoria) %> |
-<%= link_to 'Back', categorias_path %>
+	<div class="wrapper">
+		<div class="info-box -categoria">
+			<div class="content">
+				<p class="item -name"><strong>Nome:</strong> Moda</p>
+			</div>
+			<div class="actions">
+				<%= link_to 'Editar', edit_categoria_path, class: "action -underlined -edit" %>
+				<%= link_to 'Voltar', categorias_path, class: "action -underlined -back" %>
+			</div>
+		</div>
+	</div>
+</div>

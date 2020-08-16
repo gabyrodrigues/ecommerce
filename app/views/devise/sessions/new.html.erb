@@ -1,0 +1,31 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>	
+	<div class="devise-form">
+		<fieldset class="fieldset -email">
+			<%= f.label :email, "Email", class: "label" %><br />
+			<%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+		</fieldset>
+
+		<fieldset class="fieldset -password">
+			<%= f.label :password, "Senha", class: "label" %><br />
+			<%= f.password_field :password, autocomplete: "current-password", class: "input" %>
+		</fieldset>
+
+		<% if devise_mapping.rememberable? %>
+			<fieldset class="fieldset -checkbox">
+				<%= f.check_box :remember_me, class: "checkbox" %>
+				<%= f.label :remember_me, "Lembrar-me", class: "label" %>
+			</fieldset>
+		<% end %>
+
+		<div class="actions">
+			<%= f.submit "Login", class: "action -signin" %>
+		</div>
+	</div>
+<% end %>
+
+<%= link_to '<i class="fas fa-tags"></i> Voltar para o catálogo'.html_safe, catalogo_produtos_path, class: "action -back" %>
+
+<div class="action-links">
+	<%= render "devise/shared/links" %>
+</div>
+

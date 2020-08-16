@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container-info -minhascompras">
+    <div class="heading">
+        <h1 class="title">Minhas compras</h1>
+    </div>
+
+    <div class="wrapper">
+        <div class="info-table -minhascompras">
+            <table class="table">
+                <thead>
+                    <tr class="table-heading">
+                        <th class="item -total">Valor total</th>
+                        <th class="item -pagamento">Forma de pagamento</th>
+                        <th class="item -datetime">Data/Hora da compra</th>
+                        <th class="item -endereco">Endereço</th>
+                        <th class="item -actions"></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody class="table-info">
+                    <!-- <#% @compras.each do |compra| %> -->
+                    <tr class="list">
+                        <td class="item -total" data-th="Valor total (R$)">R$ 450,00</td>
+                        <td class="item -pagamento" data-th="Forma de pagamento">Boleto</td>
+                        <td class="item -datetime" data-th="Data/Hora da compra">15/08/2020 22:00</td>
+                        <td class="item -endereco" data-th="Endereço">Rua 100, Nº 200</td>
+                        <td class="actions" data-th="Ações">
+                            <%= link_to 'Ver detalhes', compra_path(1), class: "action -underlined -view" %>
+                        </td>
+                    </tr>
+                    <!-- <%# end %> -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,18 +1,27 @@
 Rails.application.routes.draw do
-  resources :produtos_compras
-  resources :categorias_produtos
-  resources :compras
-  resources :categorias
-  resources :produtos do
-    collection do
-      get 'catalogo'
+    resources :produtos_compras
+    resources :categorias_produtos
+
+    resources :compras do
+        collection do
+            get 'minhas_compras'
+            get 'checkout'
+        end
     end
-  end
 
-  resources :clientes
-  resources :admins
+    resources :categorias
 
-  devise_for :usuarios
+    resources :produtos do
+        collection do
+            get 'catalogo'
+            get 'view'
+        end
+    end
 
-  root to: 'produtos#catalogo'
+    resources :clientes
+    resources :admins
+
+    devise_for :usuarios
+
+    root to: 'produtos#catalogo'
 end

@@ -1,5 +1,5 @@
 class ProdutosController < ApplicationController
-  skip_before_action :authenticate_usuario!, only: [:catalogo]
+  skip_before_action :authenticate_usuario!
   before_action :set_produto, only: [:show, :edit, :update, :destroy]
 
   # GET /produtos
@@ -9,6 +9,9 @@ class ProdutosController < ApplicationController
   end
 
   def catalogo
+  end
+
+  def view
   end
 
   # GET /produtos/1
@@ -44,15 +47,15 @@ class ProdutosController < ApplicationController
   # PATCH/PUT /produtos/1
   # PATCH/PUT /produtos/1.json
   def update
-    respond_to do |format|
-      if @produto.update(produto_params)
-        format.html { redirect_to @produto, notice: 'Produto was successfully updated.' }
-        format.json { render :show, status: :ok, location: @produto }
-      else
-        format.html { render :edit }
-        format.json { render json: @produto.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @produto.update(produto_params)
+    #     format.html { redirect_to @produto, notice: 'Produto was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @produto }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @produto.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /produtos/1
@@ -68,7 +71,7 @@ class ProdutosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_produto
-      @produto = Produto.find(params[:id])
+      #@produto = Produto.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

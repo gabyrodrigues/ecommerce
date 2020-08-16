@@ -1,27 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Categorias</h1>
+<div class="container-info -categorias">
+    <div class="heading">
+        <h1 class="title">Categorias</h1>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="wrapper">
+        <div class="info-table -categorias">
+            <table class="table">
+                <thead>
+                    <tr class="table-heading">
+                        <th class="item -name">Nome</th>
+                        <th class="item -actions"></th>
+                        <th></th>
+                    </tr>
+                </thead>
 
-  <tbody>
-    <% @categorias.each do |categoria| %>
-      <tr>
-        <td><%= categoria.nome %></td>
-        <td><%= link_to 'Show', categoria %></td>
-        <td><%= link_to 'Edit', edit_categoria_path(categoria) %></td>
-        <td><%= link_to 'Destroy', categoria, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+                <tbody class="table-info">
+                    <!-- <#% @categorias.each do |categoria| %> -->
+                    <tr class="list">
+                        <td class="item -name" data-th="Nome">Biquinis</td>
+                        <td class="actions" data-th="Ações">
+                            <%= link_to 'Ver', categoria_path(1), class: "action -underlined -view" %>
+                            <%= link_to 'Editar', edit_categoria_path(1), class: "action -underlined -edit" %>
+                            <%= link_to 'Apagar', categorias_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "action -underlined -delete" %>
+                        </td>
+                    </tr>
+                    <!-- <%# end %> -->
+                </tbody>
+            </table>
+        </div>
 
-<br>
-
-<%= link_to 'New Categoria', new_categoria_path %>
+        <%= link_to '<i class="fa fa-plus"></i> Nova categoria'.html_safe, new_categoria_path, class: "action -new" %>
+    </div>
+</div>
