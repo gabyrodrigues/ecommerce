@@ -1,7 +1,7 @@
 let body = document.querySelector("body");
 
 //funciona apenas no checkout para prevenir de exibir erros nas outras telas
-if(body.classList.contains("checkout") || (body.classList.contains("compras") && body.classList.contains("edit"))) {
+if(body.classList.contains("compras-checkout") || body.classList.contains("compras-edit")) {
     function mascaraCartao(data) {
         if (mascaraInteiro(data) == false) {
             event.returnValue = false;

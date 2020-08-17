@@ -1,7 +1,7 @@
 let body = document.querySelector("body");
 
 //funciona apenas no checkout para prevenir de exibir erros nas outras telas
-if(body.classList.contains("checkout") || (body.classList.contains("compras") && body.classList.contains("edit"))) {
+if(body.classList.contains("compras-checkout") || body.classList.contains("compras-edit")) {
     //checkout wizard form
     let currentTab = 0; // Current tab is set to be the first tab (0)
     showTab(currentTab); // Display the current tab
