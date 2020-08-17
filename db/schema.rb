@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_09_081925) do
+ActiveRecord::Schema.define(version: 2020_08_17_004647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,11 +60,6 @@ ActiveRecord::Schema.define(version: 2020_08_09_081925) do
 
   create_table "clientes", force: :cascade do |t|
     t.bigint "usuario_id", null: false
-    t.string "cpf"
-    t.string "endereco"
-    t.string "bairro"
-    t.string "cidade"
-    t.string "estado"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["usuario_id"], name: "index_clientes_on_usuario_id"
@@ -75,6 +70,17 @@ ActiveRecord::Schema.define(version: 2020_08_09_081925) do
     t.datetime "data_hora"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "cep"
+    t.string "endereco"
+    t.string "bairro"
+    t.string "cidade"
+    t.string "estado"
+    t.string "forma_pagamento"
+    t.decimal "valor_total"
+    t.string "numero_cartao"
+    t.integer "cvv"
+    t.string "data_validade"
+    t.string "status"
     t.index ["cliente_id"], name: "index_compras_on_cliente_id"
   end
 
@@ -105,7 +111,19 @@ ActiveRecord::Schema.define(version: 2020_08_09_081925) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer "invitation_limit"
+    t.string "invited_by_type"
+    t.bigint "invited_by_id"
+    t.integer "invitations_count", default: 0
     t.index ["email"], name: "index_usuarios_on_email", unique: true
+    t.index ["invitation_token"], name: "index_usuarios_on_invitation_token", unique: true
+    t.index ["invitations_count"], name: "index_usuarios_on_invitations_count"
+    t.index ["invited_by_id"], name: "index_usuarios_on_invited_by_id"
+    t.index ["invited_by_type", "invited_by_id"], name: "index_usuarios_on_invited_by_type_and_invited_by_id"
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 
