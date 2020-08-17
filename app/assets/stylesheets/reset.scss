@@ -63,13 +63,13 @@ a {
 
 input {
     outline: 0 !important;
-    border-radius: 0;   
+    border-radius: 0;
     padding: 10px 15px;
 
     &:focus {
         border-color: #563F40 !important;
 	}
-	
+
 	&::placeholder {
         color: #949494;
         font-style: italic;

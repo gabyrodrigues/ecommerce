@@ -7,25 +7,9 @@ $size-desktop-very-large: 1760px;
 $size-special-desktop: 1200px;
 
 /* Icons */
-$icon-angle-down: "\e901";
-$icon-angle-left: "\e902";
-$icon-angle-right: "\e903";
-$icon-angle-up: "\e904";
 $icon-cart: "\f07a";
 $icon-cart-add: "\f217";
-$icon-payment-amex:"\e900";
-$icon-payment-boleto:"\e905";
-$icon-payment-diners:"\e907";
-$icon-payment-discover:"\e908";
-$icon-payment-elo:"\e909";
-$icon-payment-jcb:"\e90a";
-$icon-payment-master:"\e90b";
-$icon-payment-visa:"\e911";
-$icon-safe:"\e90c";
-$icon-star: "\e90f";
-$icon-star-full: "\e90e";
 $icon-trash: "\f2ed";
-$icon-update: "\e913";
 $icon-user: "\f007";
 $icon-toggle: "\f0c9";
 
@@ -33,31 +17,21 @@ $icon-toggle: "\f0c9";
 // Colors
 // __________________________
 
-$focus-color: #4A90E2;
-
-// Purchase colors
-$purchase-color: #76D712;
-$purchase-color-darker: #00AF00;
-
 $primary-color: #4a4a4a;
 $alternate-color: #563F40;
 $alternate-color-light: #c59883;
 $danger-color: #d9534f;
 $danger-color-darker: darken($danger-color, 10%);
+$header-background-color: #f8ede4;
 
 // Text
 $text-color: #4A4A4A;
-$text-color-light: #9B9B9B;
 $text-color-darker: #4D4D4D;
 $text-color-placeholder: #949494;
-$text-color-menu: #000;
 $text-color-white: #fff;
 $text-color-black: #000;
 $text-color-strong: #1a1a1a;
 
-// Icons
-$icons-color: #4a4a4a;
-$icons-color-hover: #563F40;
 
 // Borders
 $light-border-color: #EBEBEB;
@@ -66,39 +40,24 @@ $darker-border-color: #e6e6e6;
 // Backgrounds
 $light-background-color: #F7F7F7;
 
-$catalog-background-color: #f7f7f7;
-$header-background-color: #fafafa;
 $headermenus-background-color: #FFF;
-$footer-background-color: #1c1c1c;
-$discount-background-color: #4a90e2;
 $background-color-light: #f0f0f0;
 $tocart-background-color: #76d712;
 $tocart-hover-background-color: darken($tocart-background-color, 15%);
-$submit-background-color: #4a90e2;
 $background-color-white: #fff;
 $button-background-color: #4a90e2;
 $button-hover-background-color: darken(#4a90e2, 12%);
-$summary-background-color: #f4fcec;
-$summary-background-color-light: #f8fdf3;
 $list-background-color: #f8f8f8;
 $list-background-color-light: #e5e5e5;
-$radio-background-color: #99999e;
 $progress-background-color: #d8d8d8;
 
-$list-text-color: #666;
-$close-text-color: #d0021b;
 $required-text-color: #e02b27;
 $progress-text-color: #e1e1e1;
 $success-text-color: #37c121;
 $success-color-darker: darken($success-text-color, 10%);
-$success-light: #ebf9e9;
-$darker-gray-color: #ccc;
 
 $border-color: #dadada;
 $border-color-light: #eee;
-$border-color-darker: #999;
-$border-color-blue: #34659e;
-$border-color-muted: #f6f6f6;
 
 
 /* Fonts */
