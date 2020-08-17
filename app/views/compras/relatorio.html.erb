@@ -1,0 +1,95 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container-info -relatoriocomprascliente">
+    <div class="heading">
+        <h1 class="title">Relatório de compras por cliente</h1>
+    </div>
+
+    <div class="wrapper">
+        <div class="search-box">
+            <fieldset class="fieldset -periodo">
+                <%= label_tag :periodo_de, "De", class: "label" %>
+                <%= date_field_tag(:periodo_de, Date.today, class: "input") %>
+            </fieldset>
+
+            <fieldset class="fieldset -periodo">
+                <%= label_tag :periodo_ate, "Até", class: "label" %>
+                <%= date_field_tag(:periodo_ate, Date.today, class: "input") %>
+            </fieldset>
+
+            <div class="actions">
+                <%= submit_tag "Buscar", class: "action -buscar" %>
+            </div>
+        </div>
+        <div class="info-table -relatoriocompras">
+            <table class="table">
+                <thead>
+                    <tr class="table-heading">
+                        <th class="item -compra">Compra ID</th>
+                        <th class="item -name">Nome do cliente</th>
+                        <th class="item -email">Email do cliente</th>
+                        <th class="item -id">Quantidade de compras</th>
+                        <th class="item -actions"></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody class="table-info">
+                    <!-- <#% @compras.each do |compra| %> -->
+                    <tr class="list">
+                        <td class="item -compra" data-th="Compra ID">1</td>
+                        <td class="item -name" data-th="Nome">Ciclano</td>
+                        <td class="item -email" data-th="Email">ciclano@gmail.com</td>
+                        <td class="item -qty" data-th="Quantidade de compras">20</td>
+                    </tr>
+                    <!-- <%# end %> -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container-info -relatoriocomprasdiario">
+    <div class="heading">
+        <h1 class="title">Relatório de compras diário</h1>
+    </div>
+
+    <div class="wrapper">
+        <div class="search-box">
+            <fieldset class="fieldset -periodo">
+                <%= label_tag :periodo_de, "De", class: "label" %>
+                <%= date_field_tag(:periodo_de, Date.today, class: "input") %>
+            </fieldset>
+
+            <fieldset class="fieldset -periodo">
+                <%= label_tag :periodo_ate, "Até", class: "label" %>
+                <%= date_field_tag(:periodo_ate, Date.today, class: "input") %>
+            </fieldset>
+
+            <div class="actions">
+                <%= submit_tag "Buscar", class: "action -search" %>
+            </div>
+        </div>
+        <div class="info-table -relatoriocompras">
+            <table class="table">
+                <thead>
+                    <tr class="table-heading">
+                        <th class="item -data">Data</th>
+                        <th class="item -total">Total recebido</th>
+                        <th class="item -actions"></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody class="table-info">
+                    <!-- <#% @compras.each do |compra| %> -->
+                    <tr class="list">
+                        <td class="item -data" data-th="Data">22/07/2020</td>
+                        <td class="item -total" data-th="Total recebido">R$ 1000</td>
+                    </tr>
+                    <!-- <%# end %> -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1243,6 +1243,91 @@ body {
     }
 }
 
+.search-box {
+    display: flex;
+    justify-content: center;
+    margin-bottom: $spacing;
+    width: 100%;
+
+    >.fieldset {
+        >.label {
+            color: $text-color-strong;
+            display: block;
+            font-size: 16px;
+            margin-bottom: 10px;
+
+            @include breakpoint(mobile) {
+                font-size: 14px;
+            }
+        }
+
+        >.input,
+        >.select {
+            border: 2px solid $darker-border-color;
+            border-radius: 5px;
+            color: $text-color;
+            font-size: 14px;
+            min-height: 50px;
+            padding: 10px 15px;
+            width: 100%;
+
+            @include breakpoint(mobile) {
+                min-height: 40px;
+            }
+        }
+
+
+        &+.fieldset {
+            padding-left: $spacing;
+
+            @include breakpoint(mobile) {
+                margin-top: $spacing;
+                padding-left: 0;
+            }
+        }
+    }
+
+    >.actions {
+        align-items: flex-end;
+        display: flex;
+        padding-left: $spacing;
+
+        >.action {
+            background-color: $alternate-color;
+            border: 0;
+            border-radius: 5px;
+            color: $text-color-white;
+            cursor: pointer;
+            font-family: $semibold-font;
+            font-size: 18px;
+            min-height: 50px;
+            padding: 10px 15px;
+            text-align: center;
+            width: auto;
+
+            &:hover {
+                background-color: $alternate-color-light;
+            }
+
+            @include breakpoint(mobile) {
+                font-size: 14px;
+                min-height: 40px;
+                padding: 10px 10px;
+                width: 100%;
+            }
+        }
+
+        @include breakpoint(mobile) {
+            margin-top: $spacing;
+            padding-left: 0;
+        }
+    }
+
+    @include breakpoint(mobile) {
+        flex-direction: column;
+    }
+}
+
 // FORMULÁRIOS
 .form-register {
     display: flex;

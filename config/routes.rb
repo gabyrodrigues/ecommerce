@@ -6,6 +6,7 @@ Rails.application.routes.draw do
         collection do
             get 'minhas_compras'
             get 'checkout'
+            get 'relatorio'
         end
     end
 

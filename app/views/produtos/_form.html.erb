@@ -20,15 +20,30 @@
 			<%= form.label :nome, "Nome", class: "label" %>
 			<%= form.text_field :nome, class: "input", name: "nome", id: "nome", :required => true %>
 		</fieldset>
-		
+
 		<fieldset class="fieldset -qty">
 			<%= form.label :quantidade, "Quantidade estoque", class: "label" %>
 			<%= form.number_field :quantidade, class: "input", name: "qty", id: "qty", :required => true %>
 		</fieldset>
-		   
+
 		<fieldset class="fieldset -price">
 			<%= form.label :preco, "Preço unitário", class: "label" %>
 			<%= form.text_field :preco, class: "input", name: "price", id: "price", :required => true %>
+		</fieldset>
+
+		<fieldset class="fieldset -categoria">
+			<%= form.label :categoria, "Categorias", class: "label" %>
+
+			<div class="control">
+				<%= form.check_box :categoria2, class: "checkbox" %>
+				<%= form.label :categoria2, "Biquini", class: "checkbox" %>
+
+				<%= form.check_box :categoria1, class: "checkbox" %>
+				<%= form.label :categoria1, "Moda", class: "checkbox" %>
+
+				<%= form.check_box :categoria3, class: "checkbox" %>
+				<%= form.label :categoria3, "Maiôs", class: "checkbox" %>
+			</div>
 		</fieldset>
 	</div>
 

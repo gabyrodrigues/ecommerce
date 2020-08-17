@@ -14,6 +14,14 @@
         </p>
     </div>
 
+    <div class="info">
+        <%= link_to '<i class="fas fa-calendar-week"></i> Relatório de compras'.html_safe, relatorio_compras_path, class: "link" %>
+
+        <p class="text">
+            Acesse o relatório de compras para acessar o total de compras por cliente em um determinado período ou o total de compras por dia
+        </p>
+    </div>
+
     <div class="wrapper">
         <div class="info-table -compras">
             <table class="table">
@@ -24,6 +32,7 @@
                         <th class="item -email">Email do cliente</th>
                         <th class="item -id">Cliente ID</th>
                         <th class="item -datetime">Data/Hora da compra</th>
+                        <th class="item -total">Valor total</th>
                         <th class="item -produtos">Produtos da compra</th>
                         <th class="item -actions"></th>
                         <th></th>
@@ -37,7 +46,8 @@
                         <td class="item -name" data-th="Nome">Ciclano</td>
                         <td class="item -email" data-th="Email">ciclano@gmail.com</td>
                         <td class="item -id" data-th="ID">2</td>
-                        <td class="item -datetime" data-th="Data/Hora da compra">15/08/2020 22:00</td>
+                        <td class="item -datetime" data-th="Data/Hora">15/08/2020 22:00</td>
+                        <td class="item -total" data-th="Total">R$ 550,00</td>
                         <td class="actions -produtos" data-th="Produtos">
                             <%= link_to 'Ver produtos', produtos_compras_path, class: "action -underlined -view" %>
                         </td>

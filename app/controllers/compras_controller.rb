@@ -14,6 +14,9 @@ class ComprasController < ApplicationController
     def checkout
     end
 
+    def relatorio
+    end
+
     # GET /compras/1
     # GET /compras/1.json
     def show
