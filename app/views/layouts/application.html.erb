@@ -16,7 +16,7 @@
 	<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body class="page-view">
+<body class="page-view <%= controller_name %> <%= action_name %>">
 	<%= javascript_pack_tag 'masks' %>
 
 	<div class="page-wrapper">
@@ -28,6 +28,8 @@
 	</div>
 
 	<%= javascript_pack_tag 'scripts' %>
+
+	<%= javascript_pack_tag 'checkout' %>
 </body>
 
 </html>

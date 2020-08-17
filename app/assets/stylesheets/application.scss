@@ -1641,6 +1641,10 @@ body {
                     @include breakpoint(mobile) {
                         min-height: 40px;
                     }
+
+                    &.-invalid {
+                        border-color: $danger-color;
+                    }
                 }
 
                 > .select {
@@ -1677,6 +1681,7 @@ body {
             > .action {
                 align-items: center;
                 background-color: $alternate-color;
+                border: 0;
                 border-radius: 5px;
                 color: $text-color-white;
                 cursor: pointer;
@@ -1690,6 +1695,10 @@ body {
 
                 &.-next {
                     margin-left: auto;
+
+                    &.-hidden {
+                        display: none;
+                    }
                 }
 
                 &.-prev {
@@ -1699,7 +1708,7 @@ body {
                     display: none;
 
                     &.-visible {
-                        display: block;
+                        display: flex;
                     }
 
                     &:hover {
@@ -1816,6 +1825,10 @@ body {
             font-size: 16px;
             padding: 15px 15px;
             width: 100%;
+
+            &.-invalid {
+                border-color: $danger-color;
+            }
         }
 
         &.-card,
@@ -1827,6 +1840,10 @@ body {
     &.-visible {
         display: flex;
     }
+}
+
+.payment-container {
+    width: 100%;
 }
 
 .payment-forms {
