@@ -1,6 +1,15 @@
-<h1>Editing Compra</h1>
+<div class="form-container -compra">
+    <div class="wrapper">
+        <div class="heading">
+            <h1 class="legend">Editando compra</h1>
+        </div>
 
-<%= render 'form', compra: @compra %>
+        <%= render 'form', compra: @compra %>
 
-<%= link_to 'Show', @compra %> |
-<%= link_to 'Back', compras_path %>
+        <div class="actions">
+            <%= link_to 'Ver compra', compra_path, class: "action -show" %>
+            <%= link_to '<i class="fas fa-reply"></i> Voltar'.html_safe, compras_path, class: "action -back" %>
+        </div>
+    </div>
+</div>
+

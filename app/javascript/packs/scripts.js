@@ -62,7 +62,7 @@ for (let i = 0; i < qty_input.length; i++) {
 }
 
 //checkout wizard form
-var currentTab = 0; // Current tab is set to be the first tab (0)
+let currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 
 let tab_wizard = document.getElementsByClassName("tab");

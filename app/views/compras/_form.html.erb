@@ -85,39 +85,24 @@
             <div class="tab">
                 <h1 class="legend">Informações para entrega</h1>
 
-                <fieldset class="fieldset -cpf">
-                    <label class="label" for="cpf">
-                        CPF:
-                    </label>
-                    <input class="input" type="text" name="cpf">
-                </fieldset>
-
                 <fieldset class="fieldset -cep">
-                    <label class="label" for="cep">
-                        CEP:
-                    </label>
-                    <input class="input" type="text" name="cep">
-                </fieldset>
-
-                <fieldset class="fieldset -address">
-                    <label class="label" for="address">
-                        Endereço:
-                    </label>
-                    <input class="input" type="text" name="address">
+                    <%= form.label :cep, "CEP", class: "label" %>
+                    <%= form.text_field :cep, class: "input", placeholder: "60000-000", maxlength: 9 %>
                 </fieldset>
 
                 <fieldset class="fieldset -bairro">
-                    <label class="label" for="bairro">
-                        Bairro:
-                    </label>
-                    <input class="input" type="text" name="bairro">
+                    <%= form.label :bairro, "Bairro", class: "label" %>
+                    <%= form.text_field :bairro, class: "input" %>
+                </fieldset>
+
+                <fieldset class="fieldset -address">
+                    <%= form.label :endereco, "Endereço", class: "label" %>
+                    <%= form.text_field :endereco, class: "input" %>
                 </fieldset>
 
                 <fieldset class="fieldset -city">
-                    <label class="label" for="city">
-                        Cidade:
-                    </label>
-                    <input class="input" type="text" name="city">
+                    <%= form.label :cidade, "Cidade", class: "label" %>
+                    <%= form.text_field :cidade, class: "input" %>
                 </fieldset>
 
                 <fieldset class="fieldset -estado">
@@ -175,6 +160,17 @@
                         <h2 class="price">R$259,70</h2>
                     </div>
                 </div>
+
+                <!-- apenas se o usuário for admin -->
+                <h1 class="legend">Informar cliente</h1>
+
+                <fieldset class="fieldset -cliente">
+                    <select class="select" required="required" name="compra[usuario]" id="compra_usuario">
+                        <option value="">Selecione um Cliente</option>
+                        <option value="fulaninho@gmail.com">Fulano - fulaninho@gmail.com</option>
+                        <option value="ciclano@alu.ufc.br">Ciclano - ciclano@alu.ufc.br</option>
+                    </select>
+                </fieldset>
             </div>
             <div class="tab">
                 <h1 class="legend">Pagamento</h1>
@@ -196,7 +192,7 @@
                     <div class="card-container -visible">
                         <fieldset class="fieldset -card">
                             <%= form.label :numero_cartao, "Número do Cartão", class: "label" %>
-                            <%= form.text_field :numero_cartao, class: "input", placeholder: "0000 0000 0000 0000" %>
+                            <%= form.text_field :numero_cartao, class: "input", placeholder: "0000 0000 0000 0000", maxlength: 19 %>
                         </fieldset>
 
                         <fieldset class="fieldset -name">
@@ -208,12 +204,12 @@
 
                         <fieldset class="fieldset -expire">
                             <%= form.label :data_validade, "Data de validade", class: "label" %>
-                            <%= form.text_field :data_validade, class: "input", placeholder: "00/00" %>
+                            <%= form.text_field :data_validade, class: "input", placeholder: "00/00", maxlength: 5 %>
                         </fieldset>
 
                         <fieldset class="fieldset -cvv">
                             <%= form.label :cvv, "CVV", class: "label" %>
-                            <%= form.text_field :cvv, class: "input", placeholder: "000" %>
+                            <%= form.text_field :cvv, class: "input", placeholder: "000", maxlength: 3 %>
                         </fieldset>
                     </div>
 
