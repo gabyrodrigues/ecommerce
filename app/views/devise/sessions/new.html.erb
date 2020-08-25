@@ -1,10 +1,14 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-	<div class="devise-form">
-		<fieldset class="fieldset -nome">
-			<%= f.label :nome, "Nome", class: "label" %><br />
-			<%= f.text_field :nome, autofocus: true, autocomplete: "nome", class: "input" %>
-		</fieldset>
 
+	<%= render "devise/shared/error_messages", resource: resource %>
+
+	<%if flash[:alert].present? %>
+        <div class="alert-message">
+                <%= flash[:alert] %>
+        </div>
+  	<% end %>
+
+	<div class="devise-form">
 		<fieldset class="fieldset -email">
 			<%= f.label :email, "Email", class: "label" %><br />
 			<%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>

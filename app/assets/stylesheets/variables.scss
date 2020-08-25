@@ -20,7 +20,11 @@ $icon-toggle: "\f0c9";
 $primary-color: #4a4a4a;
 $alternate-color: #563F40;
 $alternate-color-light: #c59883;
+$alert-color: #ffeeba;
+$alert-color-light: #fff3cd;
+$alert-color-darker: #856404;
 $danger-color: #d9534f;
+$danger-color-light: lighten($danger-color, 20%);
 $danger-color-darker: darken($danger-color, 10%);
 $header-background-color: #f8ede4;
 

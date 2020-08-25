@@ -1,5 +1,5 @@
 // GENERAL
-body {
+/*body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: $main-font;
@@ -50,3 +50,14 @@ body {
     height: auto;
     max-width: 100%;
 }
+
+#notice {
+    background-color: $alert-color-light;
+    border: 1px solid $alert-color;
+    border-radius: 10px;
+    color: $alert-color-darker;
+    padding: $spacing;
+    margin: 10px 0;
+}
+
+*/

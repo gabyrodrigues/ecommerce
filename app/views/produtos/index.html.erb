@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<%if !notice.blank?%>
+    <p id="notice"><%= notice %></p>
+<% end %>
 
 <div class="container-info -produtos">
     <div class="heading">
@@ -23,7 +25,7 @@
                     <!-- <#% @produtos.each do |produto| %> -->
                     <tr class="list">
                         <td class="item -img" data-th="Imagem do produto">
-                            <%=  image_tag "produto-img2.png", class: "img", alt: "Imagem do produto" %> 
+                            <%=  image_tag "produto-img2.png", class: "img", alt: "Imagem do produto" %>
                         </td>
                         <td class="item -name" data-th="Nome">Biquini asa delta</td>
                         <td class="item -price" data-th="Preço">R$ 89,90</td>

@@ -86,7 +86,7 @@ body {
     > .fieldset {
         flex-basis: 100%;
 
-        > .label {
+        .label {
             color: $text-color;
             display: block;
             font-family: $bold-font;
@@ -98,7 +98,7 @@ body {
             }
         }
 
-        > .input {
+        .input {
             border: 2px solid $darker-border-color;
             border-radius: 5px;
             color: $text-color;
@@ -106,6 +106,14 @@ body {
             min-height: 50px;
             padding: 10px 15px;
             width: 100%;
+
+            &[readonly=readonly] {
+                background-color: $light-background-color;
+
+                &:focus {
+                    border-color: $darker-border-color !important;
+                }
+            }
 
             @include breakpoint(mobile) {
                 min-height: 40px;
@@ -205,4 +213,15 @@ body {
             }
         }
     }
+}
+
+
+// ALERTAS
+.alert-message {
+    background-color: $danger-color-light;
+    border: 1px solid $danger-color;
+    border-radius: 10px;
+    color: $danger-color-darker;
+    padding: $spacing;
+    margin-bottom: $spacing;
 }

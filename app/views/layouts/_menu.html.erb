@@ -3,7 +3,7 @@
         <span data-action="toggle-nav" class="action -toggle">
         </span>
 
-        <%= link_to catalogo_produtos_path, class: "logo" do %>
+        <%= link_to root_path, class: "logo" do %>
             <h1 class="title">
                 <i class="fas fa-tags"></i>
                 Ecommerce
@@ -13,53 +13,70 @@
         <nav class="menu-navigation">
             <div class="header-profile -logged">
                 <div class="header">
-                    <a href="#" class="photo">
+                    <div class="photo">
                         <%= image_tag "user-placeholder.png", class: "img", alt: "User profile photo" %>
-                    </a>
+                    </div>
                     <div class="text">
 
-                        <h3 class="note">Olá, <span class="name">visitante</span></h3>
-                        <div class="info">
-                            <a href="#" class="link">Entre</a>
-                            <span>para aproveitar as ofertas!</span>
-                        </div>
-                        <p class="email">gabyrlima.99@gmail.com</p>
+                        <h3 class="note">
+                            Olá,
+                            <% if !current_usuario.blank? %>
+                                <span class="name"><%= current_usuario.nome %></span>
+                            <% else %>
+                                <span class="name">visitante</span>
+                            <% end %>
+                        </h3>
+
+                        <% if !current_usuario.blank? %>
+                            <p class="email"><%= current_usuario.email %></p>
+                        <% else %>
+                            <div class="info">
+                                <%= link_to 'Entre', usuario_session_path, class: "link" %>
+                                <span>para aproveitar as ofertas!</span>
+                            </div>
+                        <% end %>
                     </div>
                 </div>
-                <div class="account-links">
-                    <ul class="list">
-                        <li class="item">
-                            <%= link_to 'Ver Perfil', edit_usuario_registration_path, class: "link -underlined"%>
-                        </li>
-                    </ul>
-                </div>
+                <% if !current_usuario.blank? %>
+                    <div class="account-links">
+                        <ul class="list">
+                            <li class="item">
+                                <%= link_to 'Ver Perfil', edit_usuario_registration_path, class: "link -underlined"%>
+                            </li>
+                        </ul>
+                    </div>
+                <% end %>
             </div>
             <ul class="list">
-                <li class="menu-item">
-                    <%= link_to 'Categorias', categorias_path, class: "link" %>
-                </li>
+                <% if session[:papel_id] == "Administrador" %>
+                    <li class="menu-item">
+                        <%= link_to 'Categorias', categorias_path, class: "link" %>
+                    </li>
 
-                <li class="menu-item">
-                    <%= link_to 'Produtos', produtos_path, class: "link" %>
-                </li>
+                    <li class="menu-item">
+                        <%= link_to 'Produtos', produtos_path, class: "link" %>
+                    </li>
 
-                <li class="menu-item">
-                    <%= link_to 'Administradores', admins_path, class: "link" %>
-                </li>
+                    <li class="menu-item">
+                        <%= link_to 'Administradores', admins_path, class: "link" %>
+                    </li>
 
-                <li class="menu-item">
-                    <%= link_to 'Clientes', clientes_path, class: "link" %>
-                </li>
+                    <li class="menu-item">
+                        <%= link_to 'Clientes', clientes_path, class: "link" %>
+                    </li>
 
-                <li class="menu-item">
-                    <%= link_to 'Compras', compras_path, class: "link" %>
-                </li>
+                    <li class="menu-item">
+                        <%= link_to 'Compras', compras_path, class: "link" %>
+                    </li>
+                <% end %>
             </ul>
-            <div class="menu-bottom">
-                <div class="links">
-                    <a href="#" class="action -underlined -signout">Sair</a>
+            <% if !current_usuario.blank? %>
+                <div class="menu-bottom">
+                    <div class="links">
+                        <%= link_to 'Sair', destroy_usuario_session_path, :method => :delete, class: "action -underlined -signout" %>
+                    </div>
                 </div>
-            </div>
+            <% end %>
         </nav>
 
         <div class="user-space -logged">
@@ -68,11 +85,20 @@
 
             <div class="options">
                 <ul class="list">
-                    <li class="item"><%= link_to 'Perfil', edit_usuario_registration_path, class: "link -underlined"%></li>
-                    <li class="item"><%= link_to 'Minhas compras', minhas_compras_compras_path, class: "link -underlined"%></li>
-                    <li class="item"><%= link_to 'Login', usuario_session_path, class: "link -underlined" %></li>
-                    <li class="item"><%= link_to 'Cadastre-se', new_usuario_registration_path, class: "link -underlined" %></li>
-                    <li class="item"><a class="link -underlined" href="#">Sair</a></li>
+                    <% if !current_usuario.blank? %>
+                        <li class="item"><%= link_to 'Perfil', edit_usuario_registration_path, class: "link -underlined"%></li>
+                    <% end %>
+
+                    <% if session[:papel_id] == "Cliente" %>
+                        <li class="item"><%= link_to 'Minhas compras', minhas_compras_compras_path, class: "link -underlined"%></li>
+                    <% end %>
+
+                    <% if current_usuario.blank? %>
+                        <li class="item"><%= link_to 'Login', usuario_session_path, class: "link -underlined" %></li>
+                        <li class="item"><%= link_to 'Cadastre-se', new_usuario_registration_path, class: "link -underlined" %></li>
+                    <% else %>
+                        <li class="item"><%= link_to 'Sair', destroy_usuario_session_path, :method => :delete, class: "link -underlined" %></li>
+                    <% end %>
                 </ul>
             </div>
         </div>

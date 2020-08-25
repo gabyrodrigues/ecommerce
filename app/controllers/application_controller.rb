@@ -1,3 +1,20 @@
 class ApplicationController < ActionController::Base
     before_action :authenticate_usuario!
+    before_action :configure_permitted_parameters, if: :devise_controller?
+
+    def after_sign_in_path_for(resource)
+        if Cliente.find_by(usuario_id: current_usuario.id)
+            session[:papel_id] = "Cliente"
+        elsif Admin.find_by(usuario_id: current_usuario.id)
+            session[:papel_id] = "Administrador"
+        end
+
+        catalogo_produtos_path
+    end
+
+    protected
+    def configure_permitted_parameters
+        devise_parameter_sanitizer.permit(:sign_up, keys: [:nome])
+        devise_parameter_sanitizer.permit(:account_update, keys: [:nome])
+    end
 end

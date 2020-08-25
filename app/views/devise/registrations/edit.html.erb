@@ -1,18 +1,23 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <!-- <%#= render "devise/shared/error_messages", resource: resource %> -->
+    <%= render "devise/shared/error_messages", resource: resource %>
 
 	<div class="devise-form">
         <h1 class="title">Perfil do usuário</h1>
 
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %>
+		<fieldset class="fieldset -nome">
+			<%= f.label :nome, "Nome", class: "label" %><br />
+			<%= f.text_field :nome, autofocus: true, autocomplete: "nome", class: "input", required: true %>
+		</fieldset>
 
 		<fieldset class="fieldset -email">
 			<%= f.label :email, "Email", class: "label" %><br />
-			<%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+			<%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", readonly: true %>
 		</fieldset>
+
+		<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+			<div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+		<% end %>
 
 		<fieldset class="fieldset -password">
 			<%= f.label :password, "Senha", class: "label" %>
@@ -25,14 +30,19 @@
 			<%= f.password_field :password, autocomplete: "new-password", class: "input" %>
 		</fieldset>
 
-		<fieldset class="fieldset -confirm">
-            <%= f.label :password_confirmation, "Confirme sua senha", class: "label" %>
-            <span class="note">(É necessário informar a senha atual para confirmar suas alterações)</span>
+		<fieldset class="fieldset -password">
+			<%= f.label :password_confirmation, "Confirmar Senha", class: "label" %>
 			<%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input" %>
 		</fieldset>
 
+		<fieldset class="fieldset -confirm">
+            <%= f.label :current_password, "Senha atual", class: "label" %>
+            <span class="note">(É necessário informar a senha atual para confirmar suas alterações)</span>
+			<%= f.password_field :current_password, autocomplete: "new-password", class: "input" %>
+		</fieldset>
+
 		<div class="actions">
-			<%= f.submit "Cadastrar", class: "action -signup" %>
+			<%= f.submit "Salvar alterações", class: "action -signup" %>
 		</div>
 	</div>
 <% end %>
@@ -40,5 +50,5 @@
 <%= link_to '<i class="fas fa-tags"></i> Voltar para o catálogo'.html_safe, catalogo_produtos_path, class: "action -back" %>
 
 <div class="action-links">
-	<%= button_to "Cancelar minha conta", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+	<%= button_to "Cancelar minha conta", registration_path(resource_name), data: { confirm: "Poxa, você tem certeza que deseja cancelar sua conta?" }, method: :delete %>
 </div>
