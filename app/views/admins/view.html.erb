@@ -14,7 +14,7 @@
         <p class="item -email"><strong>Email:</strong> <%= @admin.email %></p>
 			</div>
 			<div class="actions">
-				<%= link_to 'Editar', edit_admim_path(@admin), class: "action -underlined -edit" %>
+				<%= link_to 'Editar', editar_admins_path(email: @admin.email), class: "action -underlined -edit" %>
 				<%= link_to 'Voltar', admins_path, class: "action -underlined -back" %>
 			</div>
 		</div>

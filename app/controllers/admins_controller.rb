@@ -1,7 +1,4 @@
 class AdminsController < ApplicationController
-    skip_before_action :authenticate_usuario!
-    before_action :set_admin, only: [:show, :edit, :update, :destroy]
-
     # GET /admins
     # GET /admins.json
     def index
@@ -43,38 +40,39 @@ class AdminsController < ApplicationController
         end
     end
 
+    def editar
+		@admin = Usuario.find_by(email: params[:email])
+	end
+
     # PATCH/PUT /admins/1
     # PATCH/PUT /admins/1.json
-    def update
-        respond_to do |format|
-            if @admin.update(admin_params)
-                format.html { redirect_to @admin, notice: 'Administrador atualizado com sucesso.' }
-                format.json { render :show, status: :ok, location: @admin }
-            else
-                format.html { render :edit }
-                format.json { render json: @admin.errors, status: :unprocessable_entity }
-            end
-        end
-    end
+    def atualizar
+		@admin = Usuario.find_by(email: params[:email])
+		if !params[:senha].blank?
+			@admin.update(nome: params[:nome], password: params[:senha])
+		else
+			@admin.update(nome: params[:nome])
+		end
+
+    	respond_to do |format|
+     		flash[:notice] =  'Admin atualizado com sucesso!'
+			format.js {render inline: "location.href='/admins/view?email=#{params[:email]}'"}
+		end
+	end
 
     # DELETE /admins/1
     # DELETE /admins/1.json
     def destroy
-        @admin.destroy
+        @usuario = Usuario.find_by(email: params[:email])
+
+        Cliente.find_by(usuario_id: @usuario).destroy
+        Admin.find_by(usuario_id: @usuario).destroy
+
+        @usuario.destroy
+
         respond_to do |format|
             format.html { redirect_to admins_url, notice: 'Administrador deletado com sucesso.' }
             format.json { head :no_content }
         end
-    end
-
-    private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_admin
-        @admin = Admin.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def admin_params
-        params.require(:admin).permit(:usuario_id)
     end
 end
