@@ -2,13 +2,14 @@
 
 	<%= render "devise/shared/error_messages", resource: resource %>
 
-	<%if flash[:alert].present? %>
-        <div class="alert-message">
-                <%= flash[:alert] %>
-        </div>
-  	<% end %>
-
 	<div class="devise-form">
+
+		<% if flash[:alert].present? %>
+			<div class="alert-message">
+				<%= flash[:alert] %>
+			</div>
+		<% end %>
+
 		<fieldset class="fieldset -email">
 			<%= f.label :email, "Email", class: "label" %><br />
 			<%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>

@@ -3,6 +3,11 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
 	<div class="devise-form">
+		<% if flash[:alert].present? %>
+			<div class="alert-message">
+				<%= flash[:alert] %>
+			</div>
+		<% end %>
         <h1 class="title">Perfil do usuário</h1>
 
 		<fieldset class="fieldset -nome">

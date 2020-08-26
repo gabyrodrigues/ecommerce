@@ -3,6 +3,11 @@
 	<%= render "devise/shared/error_messages", resource: resource %>
 
 	<div class="devise-form">
+		<% if flash[:alert].present? %>
+			<div class="alert-message">
+				<%= flash[:alert] %>
+			</div>
+		<% end %>
 		<fieldset class="fieldset -nome">
 			<%= f.label :nome, "Nome", class: "label" %><br />
 			<%= f.text_field :nome, autofocus: true, autocomplete: "nome", class: "input", required: true %>
