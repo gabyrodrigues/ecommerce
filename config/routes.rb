@@ -20,7 +20,12 @@ Rails.application.routes.draw do
     end
 
     resources :clientes
-    resources :admins
+    resources :admins do
+        collection do
+            match 'view', via: [:get, :post]
+            match 'criar', via: [:get, :post]
+        end
+    end
 
     devise_for :usuarios
 

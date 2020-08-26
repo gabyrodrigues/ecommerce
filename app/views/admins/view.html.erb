@@ -1,0 +1,23 @@
+<%if !notice.blank?%>
+    <p id="notice"><%= notice %></p>
+<% end %>
+
+<div class="info-container -admin">
+	<div class="heading">
+		<h1 class="title">Administrador</h1>
+	</div>
+
+	<div class="wrapper">
+		<div class="info-box -admin">
+			<div class="content">
+        <p class="item -name"><strong>Nome:</strong> <%= @admin.nome %></p>
+        <p class="item -email"><strong>Email:</strong> <%= @admin.email %></p>
+			</div>
+			<div class="actions">
+				<%= link_to 'Editar', edit_admim_path(@admin), class: "action -underlined -edit" %>
+				<%= link_to 'Voltar', admins_path, class: "action -underlined -back" %>
+			</div>
+		</div>
+	</div>
+</div>
+

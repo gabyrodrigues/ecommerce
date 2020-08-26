@@ -22,22 +22,23 @@ class AdminsController < ApplicationController
     def edit
     end
 
+    def view
+        @admin = Usuario.find_by(email: params[:email])
+	end
+
     # POST /admins
     # POST /admins.json
-    def create
-        # @admin = Admin.new(admin_params)
-        # raise params.inspect
-
+    def criar
         respond_to do |format|
             if Usuario.verificar_email(params[:email])
-                usuario = Usuario.invite!(email: params[:email], nome: params[:nome])
+                usuario = Usuario.invite!(:email => params[:email], :nome => params[:nome])
                 @admin = Admin.create(usuario_id: usuario.id)
 
-                format.html { redirect_to @admin, notice: 'Convite enviado com sucesso!' }
-                format.json { render :show, status: :ok, location: @admin }
+                flash[:notice] =  'Convite enviado com sucesso!'
+				format.js {render inline: "location.href='/admins/view?email=#{params[:email]}'"}
             else
                 flash[:notice] =  'Email já cadastrado no sistema.'
-                render :new
+                format.js {render inline: "location.reload();" }
             end
         end
     end

@@ -1,3 +1,7 @@
+<%if !notice.blank?%>
+    <p id="notice"><%= notice %></p>
+<% end %>
+
 <div class="form-container -admin">
     <div class="wrapper">
         <div class="heading">
@@ -5,7 +9,23 @@
             <p class="note">Convide um usuário para ser administrador da loja</p>
         </div>
 
-        <%= render 'form', admin: @admin %>
+        <%= form_with(url: "/admins/criar", method: "get", class: "form-register") do |f| %>
+            <div class="block -admin">
+                <fieldset class="fieldset -name">
+                    <%= f.label :nome, "Nome", class: "label" %>
+                    <%= f.text_field :nome, class: "input", name: "nome", id: "nome", :required => true %>
+                </fieldset>
+
+                <fieldset class="fieldset -email">
+                    <%= f.label :email, "Email", class: "label" %>
+                    <%= f.text_field :email, class: "input", name: "email", id: "email", :required => true %>
+                </fieldset>
+            </div>
+
+            <div class="actions">
+                <%= f.submit "Salvar", class: "action -save" %>
+            </div>
+        <% end %>
 
         <div class="actions">
             <%= link_to '<i class="fas fa-reply"></i> Voltar'.html_safe, admins_path, class: "action -back" %>
