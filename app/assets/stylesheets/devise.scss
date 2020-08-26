@@ -36,7 +36,16 @@ body {
     max-width: 450px;
     padding: $spacing;
 
-    .logo {
+    > h2 {
+        color: $primary-color;
+        font-family: $bold-font;
+        font-size: 22px;
+        margin-bottom: $spacing;
+        text-align: center;
+        width: 100%;
+    }
+
+    > .logo {
         display: flex;
         justify-content: center;
         margin-bottom: $spacing;

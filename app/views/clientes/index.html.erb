@@ -14,33 +14,23 @@
                   <tr class="table-heading">
                       <th class="item -name">Nome</th>
                       <th class="item -email">Email</th>
-                      <th class="item -cpf">CPF</th>
-                      <th class="item -address">Endereço</th>
-                      <th class="item -bairro">Bairro</th>
-                      <th class="item -cidade">Cidade</th>
-                      <th class="item -estado">Estado</th>
                       <th class="item -actions"></th>
                       <th></th>
                   </tr>
               </thead>
 
               <tbody class="table-info">
-                <!-- <#% @clientes.each do |cliente| %> -->
+                <% @clientes.each do |cliente| %>
                   <tr class="list">
-                      <td class="item -name" data-th="Nome">Fulano</td>
-                      <td class="item -email" data-th="Email">fulano@gmail.com</td>
-                      <td class="item -cpf" data-th="CPF">000.000.000-00</td>
-                      <td class="item -address" data-th="Endereço">Rua 100, Nº 200</td>
-                      <td class="item -bairro" data-th="Bairro">Messejana</td>
-                      <td class="item -city" data-th="Cidade">Fortaleza</td>
-                      <td class="item -estado" data-th="Estado">Ceará</td>
+                      <td class="item -name" data-th="Nome"><%= cliente.usuario.nome %></td>
+                      <td class="item -email" data-th="Email"><%= cliente.usuario.email %></td>
                       <td class="actions" data-th="Ações">
-                          <%= link_to 'Ver', cliente_path(1), class: "action -underlined -view" %>
-                          <%= link_to 'Editar', edit_cliente_path(1), class: "action -underlined -edit" %>
-                          <%= link_to 'Apagar', clientes_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "action -underlined -delete" %>
+                          <%= link_to 'Ver', view_clientes_path(email: cliente.usuario.email), class: "action -underlined -view" %>
+                          <%= link_to 'Editar', editar_clientes_path(email: cliente.usuario.email), class: "action -underlined -edit" %>
+                          <%= link_to 'Apagar', excluir_clientes_path(email: cliente.usuario.email), method: :delete, data: { confirm: 'Você tem certeza?' }, class: "action -underlined -delete" %>
                       </td>
                   </tr>
-                <!-- <%# end %> -->
+                <% end %>
               </tbody>
           </table>
       </div>

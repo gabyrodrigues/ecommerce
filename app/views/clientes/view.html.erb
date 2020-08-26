@@ -1,0 +1,23 @@
+<%if !notice.blank?%>
+    <p id="notice"><%= notice %></p>
+<% end %>
+
+<div class="info-container -admin">
+	<div class="heading">
+		<h1 class="title">Cliente</h1>
+	</div>
+
+	<div class="wrapper">
+		<div class="info-box -admin">
+			<div class="content">
+        <p class="item -name"><strong>Nome:</strong> <%= @cliente.nome %></p>
+        <p class="item -email"><strong>Email:</strong> <%= @cliente.email %></p>
+			</div>
+			<div class="actions">
+				<%= link_to 'Editar', editar_clientes_path(email: @cliente.email), class: "action -underlined -edit" %>
+				<%= link_to 'Voltar', clientes_path, class: "action -underlined -back" %>
+			</div>
+		</div>
+	</div>
+</div>
+

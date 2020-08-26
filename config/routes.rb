@@ -19,7 +19,15 @@ Rails.application.routes.draw do
         end
     end
 
-    resources :clientes
+    resources :clientes do
+        collection do
+            match 'view', via: [:get, :post]
+            match 'criar', via: [:get, :post]
+            match 'editar', via: [:get, :post]
+            match 'atualizar', via: [:get, :post]
+            match 'excluir', via: [:get, :post]
+        end
+    end
     resources :admins do
         collection do
             match 'view', via: [:get, :post]

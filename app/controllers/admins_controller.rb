@@ -1,13 +1,7 @@
 class AdminsController < ApplicationController
-    # GET /admins
-    # GET /admins.json
+
     def index
         @admins = Admin.all
-    end
-
-    # GET /admins/1
-    # GET /admins/1.json
-    def show
     end
 
     # GET /admins/new
@@ -15,16 +9,10 @@ class AdminsController < ApplicationController
         @admin = Admin.new
     end
 
-    # GET /admins/1/edit
-    def edit
-    end
-
     def view
         @admin = Usuario.find_by(email: params[:email])
 	end
 
-    # POST /admins
-    # POST /admins.json
     def criar
         respond_to do |format|
             if Usuario.verificar_email(params[:email])
@@ -44,8 +32,6 @@ class AdminsController < ApplicationController
 		@admin = Usuario.find_by(email: params[:email])
 	end
 
-    # PATCH/PUT /admins/1
-    # PATCH/PUT /admins/1.json
     def atualizar
 		@admin = Usuario.find_by(email: params[:email])
 		if !params[:senha].blank?
@@ -60,8 +46,6 @@ class AdminsController < ApplicationController
 		end
 	end
 
-    # DELETE /admins/1
-    # DELETE /admins/1.json
     def destroy
         @usuario = Usuario.find_by(email: params[:email])
 

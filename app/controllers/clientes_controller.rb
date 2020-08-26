@@ -1,75 +1,59 @@
 class ClientesController < ApplicationController
-  skip_before_action :authenticate_usuario!
-  before_action :set_cliente, only: [:show, :edit, :update, :destroy]
-
-  # GET /clientes
-  # GET /clientes.json
-  def index
-    @clientes = Cliente.all
-  end
-
-  # GET /clientes/1
-  # GET /clientes/1.json
-  def show
-  end
-
-  # GET /clientes/new
-  def new
-    @cliente = Cliente.new
-  end
-
-  # GET /clientes/1/edit
-  def edit
-  end
-
-  # POST /clientes
-  # POST /clientes.json
-  def create
-    @cliente = Cliente.new(cliente_params)
-
-    respond_to do |format|
-      if @cliente.save
-        format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
-        format.json { render :show, status: :created, location: @cliente }
-      else
-        format.html { render :new }
-        format.json { render json: @cliente.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /clientes/1
-  # PATCH/PUT /clientes/1.json
-  def update
-    # respond_to do |format|
-    #   if @cliente.update(cliente_params)
-    #     format.html { redirect_to @cliente, notice: 'Cliente was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @cliente }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @cliente.errors, status: :unprocessable_entity }
-    #   end
-    # end
-  end
-
-  # DELETE /clientes/1
-  # DELETE /clientes/1.json
-  def destroy
-    @cliente.destroy
-    respond_to do |format|
-      format.html { redirect_to clientes_url, notice: 'Cliente was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cliente
-      #@cliente = Cliente.find(params[:id])
+    def index
+        @clientes = Cliente.all
     end
 
-    # Only allow a list of trusted parameters through.
-    def cliente_params
-      params.require(:cliente).permit(:usuario_id, :cpf, :endereco, :bairro, :cidade, :estado)
+    # GET /clientes/new
+    def new
+        @cliente = Cliente.new
+    end
+
+    def view
+        @cliente = Usuario.find_by(email: params[:email])
+	end
+
+    def criar
+        respond_to do |format|
+            if Usuario.verificar_email(params[:email])
+                usuario = Usuario.invite!(:email => params[:email], :nome => params[:nome])
+
+                flash[:notice] =  'Convite enviado com sucesso!'
+                format.js {render inline: "location.href='/clientes/view?email=#{params[:email]}'"}
+            else
+                flash[:notice] =  'Email já cadastrado no sistema.'
+                format.js {render inline: "location.reload();" }
+            end
+        end
+    end
+
+    def editar
+		@cliente = Usuario.find_by(email: params[:email])
+	end
+
+    def atualizar
+		@cliente = Usuario.find_by(email: params[:email])
+		if !params[:senha].blank?
+			@cliente.update(nome: params[:nome], password: params[:senha])
+		else
+			@cliente.update(nome: params[:nome])
+		end
+
+    	respond_to do |format|
+     		flash[:notice] =  'Cliente atualizado com sucesso!'
+			format.js {render inline: "location.href='/clientes/view?email=#{params[:email]}'"}
+		end
+	end
+
+    def destroy
+        @usuario = Usuario.find_by(email: params[:email])
+
+        Cliente.find_by(usuario_id: @usuario).destroy
+
+        @usuario.destroy
+
+        respond_to do |format|
+        format.html { redirect_to clientes_url, notice: 'Cliente deletado com sucesso.' }
+        format.json { head :no_content }
+        end
     end
 end
