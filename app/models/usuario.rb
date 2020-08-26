@@ -6,6 +6,10 @@ class Usuario < ApplicationRecord
 
     validates_presence_of :nome
 
+    def self.verificar_email(email)
+        return self.where(email: email).blank?
+    end
+
     after_create :insert_cliente
 
     def insert_cliente

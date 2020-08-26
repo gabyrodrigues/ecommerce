@@ -1,5 +1,5 @@
 class ProdutosController < ApplicationController
-  skip_before_action :authenticate_usuario!, only: [:catalogo]
+  skip_before_action :authenticate_usuario!, only: [:catalogo, :view]
   before_action :set_produto, only: [:show, :edit, :update, :destroy]
 
   # GET /produtos

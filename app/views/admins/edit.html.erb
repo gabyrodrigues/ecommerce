@@ -7,7 +7,7 @@
         <%= render 'form', admin: @admin %>
 
         <div class="actions">
-            <%= link_to 'Ver admin', admim_path, class: "action -show" %>
+            <%= link_to 'Ver admin', admim_path(@admin), class: "action -show" %>
             <%= link_to '<i class="fas fa-reply"></i> Voltar'.html_safe, admins_path, class: "action -back" %>
         </div>
     </div>
