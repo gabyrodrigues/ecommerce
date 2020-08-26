@@ -12,6 +12,16 @@ class ApplicationController < ActionController::Base
         catalogo_produtos_path
     end
 
+    def after_accept_path_for(resource)
+        if Admin.find_by(usuario_id: current_usuario.id)
+            session[:papel_id] = "Administrador"
+        elsif Cliente.find_by(usuario_id: current_usuario.id)
+            session[:papel_id] = "Cliente"
+        end
+
+        catalogo_produtos_path
+    end
+
     protected
     def configure_permitted_parameters
         devise_parameter_sanitizer.permit(:sign_up, keys: [:nome])
