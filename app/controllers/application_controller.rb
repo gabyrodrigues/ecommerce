@@ -23,6 +23,13 @@ class ApplicationController < ActionController::Base
     end
 
     protected
+
+    def validate_route
+        if session[:papel_id] != "Administrador"
+            redirect_to private_route_admins_path
+        end
+    end
+
     def configure_permitted_parameters
         devise_parameter_sanitizer.permit(:sign_up, keys: [:nome])
         devise_parameter_sanitizer.permit(:account_update, keys: [:nome])

@@ -1,5 +1,5 @@
 class ComprasController < ApplicationController
-    skip_before_action :authenticate_usuario!
+    before_action :validate_route, except: [:checkout, :minhas_compras, :show]
     before_action :set_compra, only: [:show, :edit, :update, :destroy]
 
     # GET /compras

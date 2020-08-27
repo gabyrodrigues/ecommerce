@@ -35,6 +35,7 @@ Rails.application.routes.draw do
             match 'editar', via: [:get, :post]
             match 'atualizar', via: [:get, :post]
             match 'excluir', via: [:get, :post]
+            get 'private_route'
         end
     end
 

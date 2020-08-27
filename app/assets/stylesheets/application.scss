@@ -2055,3 +2055,58 @@ body {
         overflow-x: auto;
     }
 }
+
+
+// ROTA PRIVADA
+.private-wrapper {
+    > .content {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: center;
+
+        > i {
+            color: $alternate-color;
+            font-size: 60px;
+            margin-bottom: $spacing;
+        }
+
+        > .title {
+            color: $alternate-color;
+            font-family: $bold-font;
+            font-size: 32px;
+            margin-bottom: $spacing;
+        }
+
+        > .description {
+            color: $primary-color;
+            font-size: 18px;
+        }
+
+        > .action {
+            align-items: center;
+            background-color: $text-color-white;
+            border: 2px solid $light-border-color;
+            border-radius: 5px;
+            color: $primary-color;
+            display: flex;
+            font-family: $bold-font;
+            font-size: 14px;
+            justify-content: center;
+            margin-top: $spacing;
+            min-height: 50px;
+            padding: 10px 15px;
+            width: auto;
+
+            > i {
+                font-size: 12px;
+                margin-right: 5px;
+            }
+
+            &:hover {
+                background-color: $background-color-light;
+            }
+        }
+    }
+}

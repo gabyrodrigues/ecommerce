@@ -1,4 +1,6 @@
 class ClientesController < ApplicationController
+    before_action :validate_route
+
     def index
         @clientes = Cliente.all
     end

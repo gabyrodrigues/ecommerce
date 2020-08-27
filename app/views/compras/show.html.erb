@@ -21,8 +21,15 @@
       </div>
 
 			<div class="actions">
-				<%= link_to 'Editar', edit_compra_path(1), class: "action -underlined -edit" %>
-				<%= link_to 'Voltar', compras_path, class: "action -underlined -back" %>
+                <% if session[:papel_id] == "Administrador" %>
+                    <%= link_to 'Editar', edit_compra_path(1), class: "action -underlined -edit" %>
+                <% end %>
+                <% if session[:papel_id] == "Administrador" %>
+                    <%= link_to 'Voltar', compras_path, class: "action -underlined -back" %>
+                <% end %>
+                <% if session[:papel_id] == "Cliente" %>
+                    <%= link_to 'Voltar', minhas_compras_compras_path, class: "action -underlined -back" %>
+                <% end %>
 			</div>
 		</div>
 	</div>

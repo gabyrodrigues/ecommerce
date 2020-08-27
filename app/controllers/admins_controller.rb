@@ -1,4 +1,5 @@
 class AdminsController < ApplicationController
+    before_action :validate_route, only: [:index, :editar, :view, :new]
 
     def index
         @admins = Admin.all
