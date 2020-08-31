@@ -19,16 +19,16 @@
                 </thead>
 
                 <tbody class="table-info">
-                    <!-- <#% @categorias.each do |categoria| %> -->
+                    <% @categorias.each do |categoria| %>
                     <tr class="list">
-                        <td class="item -name" data-th="Nome">Biquinis</td>
+                        <td class="item -name" data-th="Nome"><%= categoria.nome %></td>
                         <td class="actions" data-th="Ações">
-                            <%= link_to 'Ver', categoria_path(1), class: "action -underlined -view" %>
-                            <%= link_to 'Editar', edit_categoria_path(1), class: "action -underlined -edit" %>
-                            <%= link_to 'Apagar', categorias_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "action -underlined -delete" %>
+                            <%= link_to 'Ver', categoria_path(categoria), class: "action -underlined -view" %>
+                            <%= link_to 'Editar', edit_categoria_path(categoria), class: "action -underlined -edit" %>
+                            <%= link_to 'Apagar', categoria, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "action -underlined -delete" %>
                         </td>
                     </tr>
-                    <!-- <%# end %> -->
+                    <% end %>
                 </tbody>
             </table>
         </div>

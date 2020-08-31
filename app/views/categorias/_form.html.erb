@@ -1,19 +1,20 @@
 <%= form_with(model: categoria, local: true, class: "form-register") do |form| %>
-	<!-- <#% if categoria.errors.any? %>
+	<% if categoria.errors.any? %>
 		<div id="error_explanation">
-			<h2><%#= pluralize(categoria.errors.count, "error") %> prohibited this categoria from being saved:</h2>
+			<h2><%= pluralize(categoria.errors.count, "error") %> prohibited this categoria from being saved:</h2>
 
 			<ul>
-				<#% categoria.errors.full_messages.each do |message| %>
-				<li><#%= message %></li>
-				<#% end %>
+				<% categoria.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+				<% end %>
 			</ul>
 		</div>
-	<#% end %> -->
+	<% end %>
+
 	<div class="block -categoria">
 		<fieldset class="fieldset -name">
 			<%= form.label :nome, "Nome", class: "label" %>
-			<%= form.text_field :nome, class: "input", name: "nome", id: "nome", :required => true %>
+			<%= form.text_field :nome, class: "input", :required => true %>
 		</fieldset>
 	</div>
 

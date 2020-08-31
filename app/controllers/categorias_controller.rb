@@ -29,7 +29,7 @@ class CategoriasController < ApplicationController
 
         respond_to do |format|
         if @categoria.save
-            format.html { redirect_to @categoria, notice: 'Categoria was successfully created.' }
+            format.html { redirect_to @categoria, notice: 'Categoria cadastrada com sucesso.' }
             format.json { render :show, status: :created, location: @categoria }
         else
             format.html { render :new }
@@ -41,15 +41,15 @@ class CategoriasController < ApplicationController
     # PATCH/PUT /categorias/1
     # PATCH/PUT /categorias/1.json
     def update
-        # respond_to do |format|
-        #   if @categoria.update(categoria_params)
-        #     format.html { redirect_to @categoria, notice: 'Categoria was successfully updated.' }
-        #     format.json { render :show, status: :ok, location: @categoria }
-        #   else
-        #     format.html { render :edit }
-        #     format.json { render json: @categoria.errors, status: :unprocessable_entity }
-        #   end
-        # end
+        respond_to do |format|
+          if @categoria.update(categoria_params)
+            format.html { redirect_to @categoria, notice: 'Categoria atualizada com sucesso.' }
+            format.json { render :show, status: :ok, location: @categoria }
+          else
+            format.html { render :edit }
+            format.json { render json: @categoria.errors, status: :unprocessable_entity }
+          end
+        end
     end
 
     # DELETE /categorias/1
@@ -57,7 +57,7 @@ class CategoriasController < ApplicationController
     def destroy
         @categoria.destroy
         respond_to do |format|
-        format.html { redirect_to categorias_url, notice: 'Categoria was successfully destroyed.' }
+        format.html { redirect_to categorias_url, notice: 'Categoria deletada com sucesso.' }
         format.json { head :no_content }
         end
     end
@@ -65,11 +65,11 @@ class CategoriasController < ApplicationController
     private
         # Use callbacks to share common setup or constraints between actions.
         def set_categoria
-        #@categoria = Categoria.find(params[:id])
+            @categoria = Categoria.find(params[:id])
         end
 
         # Only allow a list of trusted parameters through.
         def categoria_params
-        params.require(:categoria).permit(:nome)
+            params.require(:categoria).permit(:nome)
         end
 end
