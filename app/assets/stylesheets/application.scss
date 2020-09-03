@@ -64,11 +64,14 @@ body {
     max-width: 100%;
 }
 
-#notice {
+#notice,
+#error_explanation {
     background-color: $alert-color-light;
     border: 1px solid $alert-color;
     border-radius: 10px;
     color: $alert-color-darker;
+    display: flex;
+    flex-basis: 100%;
     padding: $spacing;
     margin: 10px 0;
 }
@@ -2020,8 +2023,15 @@ body {
             color: $text-color;
             line-height: 1.5;
 
-            >strong {
+            > strong {
                 font-family: $semibold-font;
+            }
+
+            &.-foto {
+                > .img {
+                    max-height: 300px;
+                    width: auto;
+                }
             }
         }
     }

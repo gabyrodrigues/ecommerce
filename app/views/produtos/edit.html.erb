@@ -1,3 +1,8 @@
+<%if !notice.blank?%>
+    <p id="notice"><%= notice %></p>
+<% end %>
+
+
 <div class="form-container -produto">
     <div class="wrapper">
         <div class="heading">
@@ -7,7 +12,7 @@
         <%= render 'form', produto: @produto %>
 
         <div class="actions">
-            <%= link_to 'Ver produto', produto_path, class: "action -show" %>
+            <%= link_to 'Ver produto', produto_path(@produto), class: "action -show" %>
             <%= link_to '<i class="fas fa-reply"></i> Voltar'.html_safe, produtos_path, class: "action -back" %>
         </div>
     </div>

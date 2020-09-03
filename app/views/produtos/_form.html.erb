@@ -1,50 +1,53 @@
 <%= form_with(model: produto, local: true, class: "form-register") do |form| %>
-	<!-- <#% if produto.errors.any? %>
+	<% if produto.errors.any? %>
 		<div id="error_explanation">
-			<h2><#%= pluralize(produto.errors.count, "error") %> prohibited this produto from being saved:</h2>
+			<h2><%= pluralize(produto.errors.count, "erro") %> não permitiu que esse produto fosse salvo:</h2>
 
 			<ul>
-				<#% produto.errors.full_messages.each do |message| %>
-				<li><#%= message %></li>
-				<#% end %>
+				<% produto.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+				<% end %>
 			</ul>
 		</div>
-	<#% end %> -->
+	<% end %>
 	<div class="block -produtos">
 		<fieldset class="fieldset -foto">
 			<%= form.label :foto, "Foto do produto", class: "label" %>
-			<%= form.file_field :foto, class: "input", name: "foto", id: "foto", :required => true %>
+			<%= form.file_field :foto, class: "input" %>
+			<span class="note">Tipos permitidos: .png, .jpg, .jpeg</span>
 		</fieldset>
 
 		<fieldset class="fieldset -name">
 			<%= form.label :nome, "Nome", class: "label" %>
-			<%= form.text_field :nome, class: "input", name: "nome", id: "nome", :required => true %>
+			<%= form.text_field :nome, class: "input", :required => true %>
 		</fieldset>
 
 		<fieldset class="fieldset -qty">
 			<%= form.label :quantidade, "Quantidade estoque", class: "label" %>
-			<%= form.number_field :quantidade, class: "input", name: "qty", id: "qty", :required => true %>
+			<%= form.number_field :quantidade, class: "input", :required => true %>
 		</fieldset>
 
 		<fieldset class="fieldset -price">
 			<%= form.label :preco, "Preço unitário", class: "label" %>
-			<%= form.text_field :preco, class: "input", name: "price", id: "price", :required => true %>
+			<%= form.text_field :preco, class: "input", placeholder: "ex.: 1000.99", :required => true %>
 		</fieldset>
 
-		<fieldset class="fieldset -categoria">
-			<%= form.label :categoria, "Categorias", class: "label" %>
+		<% if !@categorias.blank? %>
+			<fieldset class="fieldset -categoria">
+				<%= form.label :categoria, "Categorias", class: "label" %>
 
-			<div class="control">
-				<%= form.check_box :categoria2, class: "checkbox" %>
-				<%= form.label :categoria2, "Biquini", class: "checkbox" %>
+				<div class="control">
+					<% @categorias.each do |categoria| %>
+						<%= form.check_box(:categoria, { :multiple => true }, categoria.id, nil) %>
+						<%= form.label categoria.id, categoria.nome, class: "checkbox" %>
+					<% end %>
 
-				<%= form.check_box :categoria1, class: "checkbox" %>
-				<%= form.label :categoria1, "Moda", class: "checkbox" %>
 
-				<%= form.check_box :categoria3, class: "checkbox" %>
-				<%= form.label :categoria3, "Maiôs", class: "checkbox" %>
-			</div>
-		</fieldset>
+					<!-- <%#= form.check_box :categoria2, class: "checkbox" %> -->
+					<!-- <%#= form.label :categoria2, "Biquini", class: "checkbox" %> -->
+				</div>
+			</fieldset>
+		<% end %>
 	</div>
 
 	<div class="actions">

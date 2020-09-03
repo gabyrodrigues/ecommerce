@@ -22,21 +22,27 @@
                 </thead>
 
                 <tbody class="table-info">
-                    <!-- <#% @produtos.each do |produto| %> -->
+                    <% @produtos.each do |produto| %>
                     <tr class="list">
                         <td class="item -img" data-th="Imagem do produto">
-                            <%=  image_tag "produto-img2.png", class: "img", alt: "Imagem do produto" %>
+                            <%=  image_tag produto.foto, class: "img", alt: "Imagem do produto" %>
                         </td>
-                        <td class="item -name" data-th="Nome">Biquini asa delta</td>
-                        <td class="item -price" data-th="Preço">R$ 89,90</td>
-                        <td class="item -qty" data-th="Quantidade estoque">10</td>
+                        <td class="item -name" data-th="Nome">
+                            <%= produto.nome %>
+                        </td>
+                        <td class="item -price" data-th="Preço">
+                            R$ <%= produto.preco.blank? ? "0.0" : number_with_precision(produto.preco.blank? ? "0.0" : produto.preco, :precision => 2, separator: ",", :delimiter => '.')%>
+                        </td>
+                        <td class="item -qty" data-th="Quantidade estoque">
+                            <%= produto.quantidade %>
+                        </td>
                         <td class="actions" data-th="Ações">
-                            <%= link_to 'Ver', produto_path(1), class: "action -underlined -view" %>
-                            <%= link_to 'Editar', edit_produto_path(1), class: "action -underlined -edit" %>
-                            <%= link_to 'Apagar', produtos_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "action -underlined -delete" %>
+                            <%= link_to 'Ver', produto_path(produto), class: "action -underlined -view" %>
+                            <%= link_to 'Editar', edit_produto_path(produto), class: "action -underlined -edit" %>
+                            <%= link_to 'Apagar', produto, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "action -underlined -delete" %>
                         </td>
                     </tr>
-                    <!-- <%# end %> -->
+                    <% end %>
                 </tbody>
             </table>
         </div>

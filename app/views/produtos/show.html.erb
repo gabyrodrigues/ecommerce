@@ -11,15 +11,28 @@
 		<div class="info-box -produto">
 			<div class="content">
 				<p class="item -foto">
-					<%=  image_tag "produto-img2.png", class: "img", alt: "Imagem do produto" %>
+					<%=  image_tag @produto.foto, class: "img", alt: "Imagem do produto" %>
 				</p>
 
-				<p class="item -name"><strong>Nome:</strong> Moda</p>
-				<p class="item -price"><strong>Preço:</strong> R$ 89,90</p>
-				<p class="item -qty"><strong>Quantidade estoque:</strong> 10</p>
+				<p class="item -name">
+					<strong>Nome:</strong>
+					<%= @produto.nome %>
+				</p>
+				<p class="item -price">
+					<strong>Preço:</strong>
+					R$ <%= @produto.preco.blank? ? "0.0" : number_with_precision(@produto.preco.blank? ? "0.0" : @produto.preco, :precision => 2, separator: ",", :delimiter => '.')%>
+				</p>
+				<p class="item -qty">
+					<strong>Quantidade estoque:</strong>
+					<%= @produto.quantidade %>
+				</p>
+				<p class="item -categorias">
+					<strong>Categorias:</strong>
+					<%= @categorias_produtos.map { |categoria_produto| categoria_produto.categoria.nome }.join(', ').html_safe %>
+				</p>
 			</div>
 			<div class="actions">
-				<%= link_to 'Editar', edit_produto_path, class: "action -underlined -edit" %>
+				<%= link_to 'Editar', edit_produto_path(@produto), class: "action -underlined -edit" %>
 				<%= link_to 'Voltar', produtos_path, class: "action -underlined -back" %>
 			</div>
 		</div>
