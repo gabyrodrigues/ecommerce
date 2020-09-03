@@ -1,7 +1,7 @@
 let body = document.querySelector("body");
 
 //funciona apenas no checkout para prevenir de exibir erros nas outras telas
-if(body.classList.contains("compras-checkout") || body.classList.contains("compras-edit")) {
+if (body.classList.contains("compras-checkout") || body.classList.contains("compras-edit")) {
     function mascaraCartao(data) {
         if (mascaraInteiro(data) == false) {
             event.returnValue = false;
@@ -99,3 +99,31 @@ if(body.classList.contains("compras-checkout") || body.classList.contains("compr
         }
     }
 }
+
+$(document).ready(function () {
+    var mask = {
+        money: function () {
+            var el = this
+                , exec = function (v) {
+                    v = v.replace(/\D/g, "");
+                    v = new String(Number(v));
+                    var len = v.length;
+                    if (1 == len)
+                        v = v.replace(/(\d)/, "0.0$1");
+                    else if (2 == len)
+                        v = v.replace(/(\d)/, "0.$1");
+                    else if (len > 2) {
+                        v = v.replace(/(\d{2})$/, '.$1');
+                    }
+                    return v;
+                };
+            setTimeout(function () {
+                el.value = exec(el.value);
+            }, 1);
+        }
+    }
+
+    $(function () {
+        $('.currency').bind('keypress', mask.money)
+    });
+});

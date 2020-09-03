@@ -27,7 +27,7 @@
 
 		<fieldset class="fieldset -price">
 			<%= form.label :preco, "Preço unitário", class: "label" %>
-			<%= form.text_field :preco, class: "input", placeholder: "ex.: 1000.99", :required => true %>
+			<%= form.text_field :preco, class: "input currency", placeholder: "ex.: 1000.99", :required => true %>
 		</fieldset>
 
 		<% if !@categorias.blank? %>

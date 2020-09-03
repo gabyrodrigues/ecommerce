@@ -61,3 +61,6 @@ gem 'devise_invitable'
 
 #Validações active storage
 gem 'active_storage_validations'
+
+#Máscaras
+gem 'jquery_mask_rails'
