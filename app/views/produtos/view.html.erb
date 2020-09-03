@@ -1,11 +1,13 @@
 <div class="product-wrapper">
-    <h1 class="title">Biquini Asa Delta</h1>
+    <h1 class="title"><%= @produto.nome %></h1>
 
     <div class="image">
-        <%=  image_tag "produto-img2.png", class: "img", alt: "Imagem do produto" %> 
+        <%=  image_tag @produto.foto, class: "img", alt: "Imagem do produto" %>
     </div>
     <div class="info">
-        <h1 class="price"> R$ 89,90</h1>
+        <h1 class="price">
+            R$ <%= @produto.preco.blank? ? "0.0" : number_with_precision(@produto.preco.blank? ? "0.0" : @produto.preco, :precision => 2, separator: ",", :delimiter => '.')%>
+        </h1>
 
         <div class="actions">
             <div class="control-qty">

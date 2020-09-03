@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :produtos do
         collection do
             get 'catalogo'
-            get 'view'
+            match 'view', via: [:get, :post]
         end
     end
 

@@ -37,11 +37,8 @@
 				<div class="control">
 					<% @categorias.each do |categoria| %>
 						<%= form.check_box(:categoria, { :multiple => true }, categoria.id, nil) %>
-						<%= form.label categoria.id, categoria.nome, class: "checkbox" %>
+						<%= form.label "categoria_#{categoria.id}", categoria.nome, class: "checkbox" %>
 					<% end %>
-
-					<!-- <%#= form.check_box :categoria2, class: "checkbox" %> -->
-					<!-- <%#= form.label :categoria2, "Biquini", class: "checkbox" %> -->
 				</div>
 			</fieldset>
 		<% end %>

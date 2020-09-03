@@ -10,9 +10,11 @@ class ProdutosController < ApplicationController
     end
 
     def catalogo
+        @produtos = Produto.where("quantidade >= ?", 1)
     end
 
     def view
+        @produto = Produto.find_by(id: params[:produto_id])
     end
 
     # GET /produtos/1
@@ -31,6 +33,7 @@ class ProdutosController < ApplicationController
     # GET /produtos/1/edit
     def edit
         @categorias = Categoria.all
+        @checked_categorias = CategoriasProduto.where(produto_id: @produto.id)
     end
 
     # POST /produtos
