@@ -58,3 +58,6 @@ gem 'devise'
 
 # Login por convite
 gem 'devise_invitable'
+
+#Validações active storage
+gem 'active_storage_validations'

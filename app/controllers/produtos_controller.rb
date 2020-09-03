@@ -36,15 +36,14 @@ class ProdutosController < ApplicationController
     # POST /produtos
     # POST /produtos.json
     def create
-        @categorias = params[:produto][:categoria]
+        @categorias = Categoria.where(id: params[:produto][:categoria])
         @produto = Produto.new(produto_params)
 
-        if !@categorias.blank? || @categorias != nil
+        if !@categorias.empty?
             respond_to do |format|
                 if @produto.save
-
                     @categorias.each do |categoria|
-                        CategoriasProduto.create(categoria_id: categoria, produto_id: @produto.id)
+                        CategoriasProduto.create(categoria_id: categoria.id, produto_id: @produto.id)
                     end
 
                     format.html { redirect_to @produto, notice: 'Produto cadastrado com sucesso.' }
@@ -53,21 +52,27 @@ class ProdutosController < ApplicationController
                     format.html { render :new }
                     format.json { render json: @produto.errors, status: :unprocessable_entity }
                 end
+
             end
         else
             flash[:notice] =  'Selecione pelo menos uma categoria!'
             redirect_to new_produto_path
         end
+
     end
 
     # PATCH/PUT /produtos/1
     # PATCH/PUT /produtos/1.json
     def update
-        @categorias = params[:produto][:categoria]
+        @categorias = Categoria.where(id: params[:produto][:categoria])
 
-        if !@categorias.blank? || @categorias != nil
+        if !@categorias.empty?
             respond_to do |format|
                 if @produto.update(produto_params)
+                    @categorias.each do |categoria|
+                        CategoriasProduto.update(categoria_id: categoria.id, produto_id: @produto.id)
+                    end
+
                     format.html { redirect_to @produto, notice: 'Produto atualizado com sucesso.' }
                     format.json { render :show, status: :ok, location: @produto }
                 else

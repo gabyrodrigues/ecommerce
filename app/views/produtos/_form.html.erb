@@ -1,8 +1,6 @@
 <%= form_with(model: produto, local: true, class: "form-register") do |form| %>
 	<% if produto.errors.any? %>
 		<div id="error_explanation">
-			<h2><%= pluralize(produto.errors.count, "erro") %> não permitiu que esse produto fosse salvo:</h2>
-
 			<ul>
 				<% produto.errors.full_messages.each do |message| %>
 				<li><%= message %></li>
@@ -41,7 +39,6 @@
 						<%= form.check_box(:categoria, { :multiple => true }, categoria.id, nil) %>
 						<%= form.label categoria.id, categoria.nome, class: "checkbox" %>
 					<% end %>
-
 
 					<!-- <%#= form.check_box :categoria2, class: "checkbox" %> -->
 					<!-- <%#= form.label :categoria2, "Biquini", class: "checkbox" %> -->
