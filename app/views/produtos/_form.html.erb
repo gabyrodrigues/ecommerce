@@ -36,7 +36,10 @@
 
 				<div class="control">
 					<% @categorias.each do |categoria| %>
-						<%= form.check_box(:categoria, { :multiple => true }, categoria.id, nil) %>
+						<% @is_checked = false %>
+						<% @is_checked = true if CategoriasProduto.where(categoria_id: categoria.id, produto_id: @produto).present? %>
+
+						<%= form.check_box(:categoria, { :multiple => true, checked: @is_checked }, categoria.id, nil) %>
 						<%= form.label "categoria_#{categoria.id}", categoria.nome, class: "checkbox" %>
 					<% end %>
 				</div>

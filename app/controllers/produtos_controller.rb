@@ -33,7 +33,6 @@ class ProdutosController < ApplicationController
     # GET /produtos/1/edit
     def edit
         @categorias = Categoria.all
-        @checked_categorias = CategoriasProduto.where(produto_id: @produto.id)
     end
 
     # POST /produtos
@@ -72,9 +71,19 @@ class ProdutosController < ApplicationController
         if !@categorias.empty?
             respond_to do |format|
                 if @produto.update(produto_params)
+                    #busca as categorias que foram desmarcadas
+                    @categorias_produtos = CategoriasProduto.where.not(categoria_id: @categorias).where(produto_id: @produto.id)
+
                     @categorias.each do |categoria|
-                        CategoriasProduto.update(categoria_id: categoria.id, produto_id: @produto.id)
+                        #busca todas as categorias cadastradas
+                        @all_categorias = CategoriasProduto.where(categoria_id: categoria.id, produto_id: @produto.id)
+
+                        if @all_categorias.blank?
+                            CategoriasProduto.create(categoria_id: categoria.id, produto_id: @produto.id)
+                        end
                     end
+
+                    @categorias_produtos.destroy_all
 
                     format.html { redirect_to @produto, notice: 'Produto atualizado com sucesso.' }
                     format.json { render :show, status: :ok, location: @produto }
