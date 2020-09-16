@@ -1,5 +1,5 @@
 <%if !notice.blank?%>
-    <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 <% end %>
 
 <div class="products-list">
@@ -7,32 +7,33 @@
 
     <ul class="list">
         <% @produtos.each do |produto| %>
-            <li class="item">
-                <div class="product-info">
-                    <div class="product-image">
-                        <%= link_to view_produtos_path(produto_id: produto.id), class: "link" do %>
-                            <%=  image_tag produto.foto, class: "img", alt: "Imagem do produto" %>
-                        <% end %>
+        <li class="item">
+            <div class="product-info">
+                <div class="product-image">
+                    <%= link_to view_produtos_path(produto_id: produto.id), class: "link" do %>
+                        <%= image_tag produto.foto, class: "img", alt: "Imagem do produto" %>
+                    <% end %>
+                </div>
+                <div class="details">
+                    <div class="product-name">
+                        <%= link_to produto.nome, view_produtos_path(produto_id: produto.id), class: "name -underlined"%>
                     </div>
-                    <div class="details">
-                        <div class="product-name">
-                            <%= link_to produto.nome, view_produtos_path(produto_id: produto.id), class: "name -underlined"%>
-                        </div>
 
-                        <div class="price-container">
-                            <span class="price">
-                                R$ <%= produto.preco.blank? ? "0.0" : number_with_precision(produto.preco.blank? ? "0.0" : produto.preco, :precision => 2, separator: ",", :delimiter => '.')%>
-                            </span>
-                        </div>
+                    <div class="price-container">
+                        <span class="price">
+                            R$
+                            <%= produto.preco.blank? ? "0.0" : number_with_precision(produto.preco.blank? ? "0.0" : produto.preco, :precision => 2, separator: ",", :delimiter => '.')%>
+                        </span>
+                    </div>
 
-                        <div class="actions">
-                            <a href="#" type="button" class="action -tocart">
-                                Adicionar ao carrinho
-                            </a>
-                        </div>
+                    <div class="actions">
+                        <button onclick="addToCart('<%= produto.to_json %>', '<%= url_for(produto.foto) %>', 1);" class="action -tocart">
+                            Adicionar ao carrinho
+                        </button>
                     </div>
                 </div>
-            </li>
+            </div>
+        </li>
         <% end %>
     </ul>
 </div>

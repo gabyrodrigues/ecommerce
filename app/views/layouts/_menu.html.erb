@@ -105,102 +105,14 @@
 
         <div class="cart-container">
             <button class="button" id="cart_button">
-
-                <span class="counter">1</span>
+                <span class="counter">0</span>
             </button>
 
-            <div class="content">
-                <div class="finish-shopping">
-                    <div class="prices">
-                        <span class="label">Subtotal</span>
-                        <span class="price">R$ 199,80</span>
-                    </div>
-
-                    <div class="finish">
-                        <%= link_to 'Finalizar compra', checkout_compras_path, class: "action" %>
-                    </div>
-                </div>
-
-                <div class="added-products">
-                    <ul class="list">
-                        <li class="product">
-                            <div class="minimal-details">
-                                <div class="image">
-                                    <span class="qty">1</span>
-
-                                    <a href="" class="link">
-                                        <%= image_tag "produto-img2.png", class: "img", alt: "Imagem do produto" %>
-                                    </a>
-                                </div>
-
-                                <div class="attributes">
-                                    <%= link_to 'Biquini crochê', view_produtos_path, class: "name -underlined"%>
-                                </div>
-
-                                <div class="price">
-                                    <span class="subtotal">R$ 49,90</span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <a href="#" class="action -add"></a>
-                                <a href="#" class="action -remove"></a>
-                            </div>
-                        </li>
-
-                        <li class="product">
-                            <div class="minimal-details">
-                                <div class="image">
-                                    <span class="qty">3</span>
-
-                                    <a href="" class="link">
-                                        <%= image_tag "produto-img.png", class: "img", alt: "Imagem do produto" %>
-                                    </a>
-                                </div>
-
-                                <div class="attributes">
-                                    <%= link_to 'Maiô colorido', view_produtos_path, class: "name -underlined"%>
-                                </div>
-
-                                <div class="price">
-                                    <span class="subtotal">R$ 90,00</span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <a href="#" class="action -add"></a>
-                                <a href="#" class="action -remove"></a>
-                            </div>
-                        </li>
-
-                        <li class="product">
-                            <div class="minimal-details">
-                                <div class="image">
-                                    <span class="qty">2</span>
-
-                                    <a href="" class="link">
-                                        <%= image_tag "produto-img2.png", class: "img", alt: "Imagem do produto" %>
-                                    </a>
-                                </div>
-
-                                <div class="attributes">
-                                    <%= link_to 'Saída de banho', view_produtos_path, class: "name -underlined"%>
-                                </div>
-
-                                <div class="price">
-                                    <span class="subtotal">R$ 19,90</span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <a href="#" class="action -add"></a>
-                                <a href="#" class="action -remove"></a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="cart-options">
-                    <a href="#" class="action">Limpar carrinho</a>
-                </div>
-            </div>
+            <%= render 'produtos/cart' %>
         </div>
     </div>
 </header>
+
+<div class="tocart-alert" id="alert">
+    <span>Novo produto adicionado ao carrinho</span>
+</div>

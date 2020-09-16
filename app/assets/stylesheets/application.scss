@@ -497,6 +497,7 @@ body {
                 border: 2px solid $primary-color;
                 border-radius: 5px;
                 color: $primary-color;
+                cursor: pointer;
                 padding: 10px 15px;
                 font-family: $semibold-font;
                 font-size: 14px;
@@ -1137,7 +1138,7 @@ body {
 
 .finish-shopping {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     padding: 20px;
     width: 100%;
     border-bottom: 2px solid $light-border-color;
@@ -1171,6 +1172,7 @@ body {
             background-color: $alternate-color-light;
             border-radius: 5px;
             color: $text-color-white;
+            cursor: pointer;
             display: flex;
             font-family: $bold-font;
             font-size: 18px;
@@ -1206,6 +1208,7 @@ body {
                     align-items: center;
                     border-radius: 5px;
                     color: $text-color-white;
+                    cursor: pointer;
                     display: flex;
                     font-family: $bold-font;
                     height: 30px;
@@ -1250,6 +1253,21 @@ body {
 
             &:last-child {
                 margin-bottom: 0;
+            }
+        }
+
+        > .note {
+            color: $primary-color;
+            padding: 20px;
+            text-align: center;
+
+            &:before {
+                color: $primary-color;
+                content: $icon-cart;
+                font-family: $icon-font;
+                font-size: 16px;
+                font-weight: 700;
+                margin-right: 5px;
             }
         }
     }
@@ -1332,6 +1350,7 @@ body {
         border-radius: 5px;
         border: 2px solid $light-border-color;
         color: $text-color;
+        cursor: pointer;
         display: flex;
         font-family: $main-font;
         height: 40px;
@@ -2118,5 +2137,34 @@ body {
                 background-color: $background-color-light;
             }
         }
+    }
+}
+
+
+// ADD TO CART ALERT
+.tocart-alert {
+    background-color: $alert-color-light;
+    border: 1px solid $alert-color;
+    border-radius: 10px;
+    left: 50%;
+    opacity: 0;
+	padding: 1.2rem;
+	position: absolute;
+    text-align: center;
+    top: -100%;
+    transform: translateX(-50%);
+    transition: opacity 0.5s;
+    -webkit-transition: opacity 0.5s;
+    width: 50%;
+	z-index: 1;
+
+	span {
+		color: $alert-color-darker;
+		font-size: 16px;
+    }
+
+    &.-visible {
+        opacity: 1;
+        top: auto;
     }
 }
