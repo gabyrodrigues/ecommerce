@@ -14,12 +14,14 @@
                 <button type="button" class="control -minus">
                     <i class="fa fa-minus"></i>
                 </button>
-                <input type="number" class="qty" value="1" min="0" />
+                <input type="number" id="qty"" class="qty" value="1" min="1" />
                 <button type="button" class="control -plus">
                     <i class="fa fa-plus"></i>
                 </button>
             </div>
-            <a href="#" class="action -tocart">Adicionar ao carrinho</a>
+            <button onclick="addToCart('<%= @produto.to_json %>', '<%= url_for(@produto.foto) %>', document.getElementById('qty').value);" class="action -tocart">
+                Adicionar ao carrinho
+            </button>
         </div>
     </div>
 </div>

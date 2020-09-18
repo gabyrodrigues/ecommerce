@@ -143,14 +143,14 @@ function setCart() {
             preco_total += parseFloat(produto.preco) * qtd;
             $(".added-products .list").append(produto_html);
         });
-    }
 
-    $(".finish-shopping").append(`
-        <div class="prices">
-            <span class="label">Subtotal</span>
-            <span class="price">R$ ` + formatCurrency(preco_total) + `</span>
-        </div>
-    `);
+        $(".finish-shopping").append(`
+            <div class="prices">
+                <span class="label">Subtotal</span>
+                <span class="price">R$ ` + formatCurrency(preco_total) + `</span>
+            </div>
+        `);
+    }
 
     /*$("#finalizar-compra").click(function () {
         carrinho_log = JSON.parse(localStorage.getItem('carrinho'));
