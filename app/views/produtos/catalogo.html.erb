@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="actions">
-                        <button onclick="addToCart('<%= produto.to_json %>', '<%= url_for(produto.foto) %>', 1);" class="action -tocart">
+                        <button onclick="addToCart('<%= produto.to_json(:only => [:id, :nome, :preco]) %>', '<%= url_for(produto.foto) %>', 1);" class="action -tocart">
                             Adicionar ao carrinho
                         </button>
                     </div>
