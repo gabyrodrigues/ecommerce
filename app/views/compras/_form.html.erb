@@ -1,4 +1,15 @@
 <%= form_with(model: @compra, local: true, id: "regForm") do |form| %>
+    <% if @compra.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@compra.errors.count, "error") %> prohibited this compra from being saved:</h2>
+
+            <ul>
+                <% @compra.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
     <div class="checkout-progress">
         <div class="item -active">
             <span class="progress">
@@ -35,6 +46,7 @@
 
     <div class="checkout-wizard">
         <div class="wrapper">
+            Quantidade produtos <%= @produtos.count %>
             <div class="tab">
                 <div class="summary-container">
                     <div class="checkout-products">

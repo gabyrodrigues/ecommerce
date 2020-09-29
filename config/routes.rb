@@ -7,8 +7,11 @@ Rails.application.routes.draw do
             get 'minhas_compras'
             get 'checkout'
             get 'relatorio'
+            post 'cart_save'
         end
     end
+
+    # post '/compras/cart_save', to: 'compras#cart_save'
 
     resources :categorias
 

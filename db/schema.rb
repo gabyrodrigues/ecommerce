@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_17_004647) do
+ActiveRecord::Schema.define(version: 2020_09_29_001918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,16 @@ ActiveRecord::Schema.define(version: 2020_08_17_004647) do
     t.index ["cliente_id"], name: "index_compras_on_cliente_id"
   end
 
+  create_table "compras_produtos_clientes", force: :cascade do |t|
+    t.bigint "cliente_id", null: false
+    t.bigint "produto_id", null: false
+    t.integer "quantidade"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cliente_id"], name: "index_compras_produtos_clientes_on_cliente_id"
+    t.index ["produto_id"], name: "index_compras_produtos_clientes_on_produto_id"
+  end
+
   create_table "produtos", force: :cascade do |t|
     t.string "nome"
     t.float "preco"
@@ -133,6 +143,8 @@ ActiveRecord::Schema.define(version: 2020_08_17_004647) do
   add_foreign_key "categorias_produtos", "produtos"
   add_foreign_key "clientes", "usuarios"
   add_foreign_key "compras", "clientes"
+  add_foreign_key "compras_produtos_clientes", "clientes"
+  add_foreign_key "compras_produtos_clientes", "produtos"
   add_foreign_key "produtos_compras", "compras"
   add_foreign_key "produtos_compras", "produtos"
 end
