@@ -29,10 +29,8 @@
             <table class="table">
                 <thead>
                     <tr class="table-heading">
-                        <th class="item -compra">Compra ID</th>
                         <th class="item -name">Nome do cliente</th>
                         <th class="item -email">Email do cliente</th>
-                        <th class="item -id">Cliente ID</th>
                         <th class="item -datetime">Data/Hora da compra</th>
                         <th class="item -total">Valor total</th>
                         <th class="item -produtos">Produtos da compra</th>
@@ -42,24 +40,30 @@
                 </thead>
 
                 <tbody class="table-info">
-                    <!-- <#% @compras.each do |compra| %> -->
+                    <% @compras.each do |compra| %>
                     <tr class="list">
-                        <td class="item -compra" data-th="Compra ID">1</td>
-                        <td class="item -name" data-th="Nome">Ciclano</td>
-                        <td class="item -email" data-th="Email">ciclano@gmail.com</td>
-                        <td class="item -id" data-th="ID">2</td>
-                        <td class="item -datetime" data-th="Data/Hora">15/08/2020 22:00</td>
-                        <td class="item -total" data-th="Total">R$ 550,00</td>
+                        <td class="item -name" data-th="Nome">
+                            <%= compra.cliente.usuario.nome %>
+                        </td>
+                        <td class="item -email" data-th="Email">
+                            <%= compra.cliente.usuario.email %>
+                        </td>
+                        <td class="item -datetime" data-th="Data/Hora">
+                            <%= compra.data.strftime("%d/%m/%Y") %> - <%= compra.hora.strftime("%H:%M") %>
+                        </td>
+                        <td class="item -total" data-th="Total">
+                            R$ <%= number_with_precision(compra.valor_total, :precision => 2, separator: ",", :delimiter => '.')%>
+                        </td>
                         <td class="actions -produtos" data-th="Produtos">
                             <%= link_to 'Ver produtos', produtos_compras_path, class: "action -underlined -view" %>
                         </td>
                         <td class="actions" data-th="Ações">
-                            <%= link_to 'Ver', compra_path(1), class: "action -underlined -view" %>
+                            <%= link_to 'Ver', compra_path(compra), class: "action -underlined -view" %>
                             <%= link_to 'Editar', edit_compra_path(1), class: "action -underlined -edit" %>
                             <%= link_to 'Apagar', compras_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "action -underlined -delete" %>
                         </td>
                     </tr>
-                    <!-- <%# end %> -->
+                    <% end %>
                 </tbody>
             </table>
         </div>

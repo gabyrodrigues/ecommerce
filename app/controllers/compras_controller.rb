@@ -5,7 +5,7 @@ class ComprasController < ApplicationController
     # GET /compras
     # GET /compras.json
     def index
-        @compras = Compra.all
+        @compras = Compra.all.order(data: :desc)
     end
 
     def minhas_compras
