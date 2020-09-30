@@ -22,17 +22,23 @@
                 </thead>
 
                 <tbody class="table-info">
-                    <!-- <#% @compras.each do |compra| %> -->
+                    <% @compras.each do |compra| %>
                     <tr class="list">
-                        <td class="item -total" data-th="Valor total (R$)">R$ 450,00</td>
-                        <td class="item -pagamento" data-th="Forma de pagamento">Boleto</td>
-                        <td class="item -datetime" data-th="Data/Hora da compra">15/08/2020 22:00</td>
-                        <td class="item -endereco" data-th="Endereço">Rua 100, Nº 200</td>
+                        <td class="item -total" data-th="Valor total (R$)">
+                            R$ <%= number_with_precision(compra.valor_total, :precision => 2, separator: ",", :delimiter => '.')%>
+                        </td>
+                        <td class="item -pagamento" data-th="Forma de pagamento">
+                            <%= compra.forma_pagamento %>
+                        </td>
+                        <td class="item -datetime" data-th="Data/Hora da compra">
+                            <%= compra.data.strftime("%d/%m/%Y") %> - <%= compra.hora.strftime("%H:%M") %>
+                        </td>
+                        <td class="item -endereco" data-th="Endereço"><%= compra.endereco %></td>
                         <td class="actions" data-th="Ações">
-                            <%= link_to 'Ver detalhes', compra_path(1), class: "action -underlined -view" %>
+                            <%= link_to 'Ver detalhes', compra_path(compra), class: "action -underlined -view" %>
                         </td>
                     </tr>
-                    <!-- <%# end %> -->
+                    <% end %>
                 </tbody>
             </table>
         </div>

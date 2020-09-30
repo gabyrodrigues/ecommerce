@@ -19,6 +19,7 @@ if(body.classList.contains("compras-checkout") || body.classList.contains("compr
 
         let next_button = document.getElementById("next_button");
         let prev_button = document.getElementById("prev_button");
+        let finish_button = document.getElementById("finish_button");
 
         //... and fix the Previous/Next buttons:
         if (n == 0) {
@@ -29,6 +30,8 @@ if(body.classList.contains("compras-checkout") || body.classList.contains("compr
 
         if (n == (tab_wizard.length - 1)) {
             next_button.innerHTML = "Concluir compra";
+            next_button.classList.add("-hidden");
+            finish_button.classList.add("-visible");
         } else {
             next_button.innerHTML = "Próximo";
         }

@@ -1,18 +1,16 @@
 class ComprasController < ApplicationController
-    # protect_from_forgery with: :exception
-    before_action :validate_route, except: [:checkout, :minhas_compras, :show, :cart_save]
+    before_action :validate_route, only: [:index, :edit, :new]
     before_action :set_compra, only: [:show, :edit, :update, :destroy]
-    # skip_before_action :verify_authenticity_token, only: [:checkout]
-    # protect_from_forgery except: :checkout
 
     # GET /compras
     # GET /compras.json
     def index
         @compras = Compra.all
-
     end
 
     def minhas_compras
+        cliente = Cliente.find_by(usuario_id: current_usuario.id)
+        @compras = Compra.where(cliente_id: cliente.id).order(data: :desc)
     end
 
     def cart_save
@@ -26,7 +24,7 @@ class ComprasController < ApplicationController
 
         produtos_json.each do |produto_ind|
             produto = Produto.find(produto_ind.select{ |k,val| k == 'produto' }.values.first)
-            qtde = produto_ind.select{ |k,val| k == 'quantidade' }.values.first
+            qtde = produto_ind.select{ |k,val| k == 'qtde' }.values.first
             compra_produto_cliente = ComprasProdutosCliente.new cliente_id: cliente.id, produto_id: produto.id, quantidade: qtde
             compra_produto_cliente.save
         end
@@ -43,6 +41,7 @@ class ComprasController < ApplicationController
     # GET /compras/1
     # GET /compras/1.json
     def show
+        @produtos_compras = ProdutosCompra.where(compra_id: params[:id])
     end
 
     # GET /compras/new
@@ -57,11 +56,20 @@ class ComprasController < ApplicationController
     # POST /compras
     # POST /compras.json
     def create
+        @produtos = get_produtos
+
         @compra = Compra.new(compra_params)
+        @compra.data = Date.today
+        @compra.hora = Time.now.strftime("%H:%M:%S")
+        @compra.valor_total = params[:compra][:valor_total].to_f
+        @compra.status = "Solicitado"
 
         respond_to do |format|
         if @compra.save
-            format.html { redirect_to @compra, notice: 'Compra was successfully created.' }
+            @produtos.each do |produto|
+                ProdutosCompra.create(compra_id: @compra.id, produto_id: produto[:produto][:id], quantidade: produto[:quantidade])
+            end
+            format.html { redirect_to @compra, notice: 'Compra efetuada com sucesso.' }
             format.json { render :show, status: :created, location: @compra }
         else
             format.html { render :new }
@@ -114,6 +122,6 @@ class ComprasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def compra_params
-        params.require(:compra).permit(:cliente_id, :data_hora)
+        params.require(:compra).permit(:cliente_id, :data, :hora, :cep, :endereco, :bairro, :cidade, :estado, :forma_pagamento, :valor_total, :numero_cartao, :cvv, :data_validade, :status)
     end
 end

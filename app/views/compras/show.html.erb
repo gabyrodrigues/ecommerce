@@ -10,25 +10,41 @@
 	<div class="wrapper">
 		<div class="info-box -compra">
 			<div class="content">
-        <p class="item -name"><strong>Nome do cliente:</strong> Ciclano</p>
-        <p class="item -datetime"><strong>Compra realizada em:</strong> 14/07/2020 - 23:00</p>
-        <p class="item -endereco"><strong>Endereço:</strong> Rua 100, Nº 200</p>
-        <p class="item -bairro"><strong>Bairro:</strong> Messejana</p>
-        <p class="item -city"><strong>Cidade:</strong> Fortaleza</p>
-        <p class="item -estado"><strong>Estado:</strong> Ceará</p>
-        <p class="item -status"><strong>Status:</strong> Solicitado</p>
-        <p class="item -status"><strong>Forma de pagamento:</strong> Boleto</p>
-      </div>
+                <p class="item -name">
+                    <strong>Nome do cliente:</strong> <%= @compra.cliente.usuario.nome %>
+                </p>
+                <p class="item -datetime">
+                    <strong>Compra realizada em:</strong> <%= @compra.data.strftime("%d/%m/%Y") %> - <%= @compra.hora.strftime("%H:%M") %>
+                </p>
+                <p class="item -endereco">
+                    <strong>Endereço:</strong> <%= @compra.endereco %>
+                </p>
+                <p class="item -bairro">
+                    <strong>Bairro:</strong> <%= @compra.bairro %>
+                </p>
+                <p class="item -city">
+                    <strong>Cidade:</strong> <%= @compra.cidade %>
+                </p>
+                <p class="item -estado">
+                    <strong>Estado:</strong> <%= @compra.estado %>
+                </p>
+                <p class="item -status">
+                    <strong>Status:</strong> <%= @compra.status %>
+                </p>
+                <p class="item -status">
+                    <strong>Forma de pagamento:</strong> <%= @compra.forma_pagamento %>
+                </p>
+            </div>
 
 			<div class="actions">
                 <% if session[:papel_id] == "Administrador" %>
                     <%= link_to 'Editar', edit_compra_path(1), class: "action -underlined -edit" %>
                 <% end %>
                 <% if session[:papel_id] == "Administrador" %>
-                    <%= link_to 'Voltar', compras_path, class: "action -underlined -back" %>
+                    <%= link_to 'Voltar para a listagem de compras', compras_path, class: "action -underlined -back" %>
                 <% end %>
                 <% if session[:papel_id] == "Cliente" %>
-                    <%= link_to 'Voltar', minhas_compras_compras_path, class: "action -underlined -back" %>
+                    <%= link_to 'Ver todas as compras', minhas_compras_compras_path, class: "action -underlined -back" %>
                 <% end %>
 			</div>
 		</div>
@@ -50,24 +66,32 @@
                         <th class="item -img"></th>
                         <th class="item -name">Nome do produto</th>
                         <th class="item -qty">Quantidade</th>
-                        <th class="item -frete">Frete fixo</th>
+                        <th class="item -price">Preço unitário</th>
+                        <th class="item -subtotal">Subtotal</th>
                         <th></th>
                     </tr>
                 </thead>
 
                 <tbody class="table-info">
-                    <!-- <#% @produtos_compras.each do |produto_compra| %> -->
+                    <% @produtos_compras.each do |produto_compra| %>
                     <tr class="list">
                         <td class="item -img" data-th="Imagem do produto">
-                            <%=  image_tag "produto-img2.png", class: "img", alt: "Imagem do produto" %>
+                            <%=  image_tag produto_compra.produto.foto, class: "img", alt: "Imagem do produto" %>
                         </td>
-                        <td class="item -name" data-th="Nome do produto">Biquini asa delta</td>
-                        <td class="item -qty" data-th="Quantidade">10</td>
-                        <td class="item -frete" data-th="Frete">R$ 10,00</td>
+                        <td class="item -name" data-th="Nome do produto"><%= produto_compra.produto.nome %></td>
+                        <td class="item -qty" data-th="Quantidade"><%= produto_compra.quantidade %></td>
+                        <td class="item -price" data-th="Preço unitário">R$ <%=  produto_compra.produto.preco.blank? ? "0.0" : number_with_precision(produto_compra.produto.preco.blank? ? "0.0" :  produto_compra.produto.preco, :precision => 2, separator: ",", :delimiter => '.')%></td>
+                        <% subtotal = produto_compra.quantidade.to_i*produto_compra.produto.preco.to_f %>
+                        <td class="item -subtotal" data-th="Subtotal">R$ <%= number_with_precision(subtotal, :precision => 2, separator: ",", :delimiter => '.')%></td>
                     </tr>
-                    <!-- <%# end %> -->
+                    <% end %>
                 </tbody>
             </table>
+        </div>
+
+        <div class="final-info">
+            <p class="item -frete">Frete fixo: R$ 10,00</p>
+            <p class="item -total">Total: R$ <%= number_with_precision(@compra.valor_total, :precision => 2, separator: ",", :delimiter => '.')%></p>
         </div>
     </div>
 </div>
