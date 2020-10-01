@@ -59,8 +59,8 @@
                         </td>
                         <td class="actions" data-th="Ações">
                             <%= link_to 'Ver', compra_path(compra), class: "action -underlined -view" %>
-                            <%= link_to 'Editar', edit_compra_path(1), class: "action -underlined -edit" %>
-                            <%= link_to 'Apagar', compras_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "action -underlined -delete" %>
+                            <%= link_to 'Editar', edit_compra_path(compra), class: "action -underlined -edit" %>
+                            <%= link_to 'Apagar', compra, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "action -underlined -delete" %>
                         </td>
                     </tr>
                     <% end %>

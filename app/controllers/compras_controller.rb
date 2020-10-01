@@ -36,7 +36,37 @@ class ComprasController < ApplicationController
     end
 
     def relatorio
+        @list_compras_diario = Compra.where('data BETWEEN ? AND ?', Date.today, Date.today).order("data DESC").group(:id, :data)
+        @compras_diario = @list_compras_diario.group_by { |c| c.data }
+
+        @list_compras_cliente = Compra.where('data BETWEEN ? AND ?', params[:data_inicio], params[:data_fim]).order("data DESC").group(:id, :data, :cliente_id)
+        @compras_cliente = @list_compras_cliente.group_by { |c| [c.data.to_date, c.cliente_id] }
     end
+
+    def buscar_diario
+        if params[:data_inicio].blank? || params[:data_fim].blank?
+            @compras = Compra.all
+        else
+            @list_compras_diario = Compra.where('data BETWEEN ? AND ?', params[:data_inicio], params[:data_fim]).order("data DESC").group(:id, :data)
+            @compras_diario = @list_compras_diario.group_by { |c| c.data.to_date }
+            # raise @compras_diario.inspect
+        end
+
+        render :inline => render_to_string(:partial => 'relatorio_diario')
+    end
+
+    def buscar_cliente
+        if params[:data_inicio].blank? || params[:data_fim].blank?
+            @compras = Compra.all
+        else
+            @list_compras_cliente = Compra.where('data BETWEEN ? AND ?', params[:data_inicio], params[:data_fim]).order("data DESC").group(:id, :data, :cliente_id)
+            @compras_cliente = @list_compras_cliente.group_by { |c| [c.data.to_date, c.cliente_id] }
+            # raise @compras_cliente.inspect
+        end
+
+        render :inline => render_to_string(:partial => 'relatorio_cliente')
+    end
+
 
     # GET /compras/1
     # GET /compras/1.json
@@ -95,10 +125,14 @@ class ComprasController < ApplicationController
     # DELETE /compras/1
     # DELETE /compras/1.json
     def destroy
+
+        @produtos_compras = ProdutosCompra.where(compra_id: @compra.id)
+        @produtos_compras.delete_all
         @compra.destroy
+
         respond_to do |format|
-        format.html { redirect_to compras_url, notice: 'Compra was successfully destroyed.' }
-        format.json { head :no_content }
+            format.html { redirect_to compras_url, notice: 'Compra deletada com sucesso.' }
+            format.json { head :no_content }
         end
     end
 

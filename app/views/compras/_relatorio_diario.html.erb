@@ -1,0 +1,20 @@
+<div class="info-table -relatoriocompras" id="lista_diario">
+    <table class="table">
+        <thead>
+            <tr class="table-heading">
+                <th class="item -data">Data</th>
+                <th class="item -total">Total recebido</th>
+            </tr>
+        </thead>
+
+        <tbody class="table-info" >
+            <% @compras_diario.each do |compra| %>
+            <!-- <%= raise compra.inspect %> -->
+                <tr class="list">
+                    <td class="item -data" data-th="Data"><%= compra[1][0].data.strftime("%d/%m/%Y") %></td>
+                    <td class="item -total" data-th="Total recebido">R$ <%= number_with_precision(compra[1][0].valor_total, :precision => 2, separator: ",", :delimiter => '.')%></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

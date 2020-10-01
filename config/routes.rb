@@ -8,6 +8,8 @@ Rails.application.routes.draw do
             get 'checkout'
             get 'relatorio'
             post 'cart_save'
+            get 'buscar_diario'
+            get 'buscar_cliente'
         end
     end
 

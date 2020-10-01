@@ -60,3 +60,43 @@ for (let i = 0; i < qty_input.length; i++) {
         qty_input[i].stepDown();
     }
 }
+
+//searches
+let buscar_cliente = document.getElementById("buscar_cliente");
+let buscar_diario = document.getElementById("buscar_diario");
+
+buscar_cliente.onclick = function () {
+    let data_inicio = document.querySelector('#inicio_cliente').value;
+    let data_fim = document.querySelector('#fim_cliente').value;
+
+    if (data_inicio && data_fim){
+        $.ajax({
+            method: "GET",
+            url: "/compras/buscar_cliente",
+            data: {data_inicio: data_inicio, data_fim: data_fim}
+        })
+        .done(function(retorno){
+            $("#lista_cliente").html(retorno);
+        });
+    } else {
+        alert("Preencha todos os campos para realizar a consulta!");
+    }
+}
+
+buscar_diario.onclick = function () {
+    let data_inicio = document.querySelector('#inicio_diario').value;
+    let data_fim = document.querySelector('#fim_diario').value;
+
+    if (data_inicio && data_fim){
+        $.ajax({
+            method: "GET",
+            url: "/compras/buscar_diario",
+            data: {data_inicio: data_inicio, data_fim: data_fim}
+        })
+        .done(function(retorno){
+            $("#lista_diario").html(retorno);
+        });
+    } else {
+        alert("Preencha todos os campos para realizar a consulta!");
+    }
+}
