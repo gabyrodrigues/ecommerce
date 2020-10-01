@@ -5,7 +5,7 @@ class ProdutosComprasController < ApplicationController
   # GET /produtos_compras
   # GET /produtos_compras.json
   def index
-    @produtos_compras = ProdutosCompra.all
+    @produtos_compras = ProdutosCompra.where(compra_id: params[:compra_id])
   end
 
   # GET /produtos_compras/1

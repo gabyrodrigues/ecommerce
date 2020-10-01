@@ -20,13 +20,13 @@
               </thead>
 
               <tbody class="table-info">
-                <!-- <#% @produtos_compras.each do |produto_compra| %> -->
+                <% @produtos_compras.each do |produto_compra| %>
                   <tr class="list">
-                    <td class="item -compra" data-th="Compra ID">1</td>
-                      <td class="item -name" data-th="Nome do produto">Biquini asa delta</td>
-                      <td class="item -qty" data-th="Quantidade">10</td>
+                    <td class="item -compra" data-th="Compra ID"><%= produto_compra.produto.id %></td>
+                      <td class="item -name" data-th="Nome do produto"><%= produto_compra.produto.nome %></td>
+                      <td class="item -qty" data-th="Quantidade"><%= produto_compra.quantidade %></td>
                   </tr>
-                <!-- <%# end %> -->
+                <% end %>
               </tbody>
           </table>
       </div>

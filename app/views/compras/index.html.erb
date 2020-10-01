@@ -55,7 +55,7 @@
                             R$ <%= number_with_precision(compra.valor_total, :precision => 2, separator: ",", :delimiter => '.')%>
                         </td>
                         <td class="actions -produtos" data-th="Produtos">
-                            <%= link_to 'Ver produtos', produtos_compras_path, class: "action -underlined -view" %>
+                            <%= link_to 'Ver produtos', produtos_compras_path(compra_id: compra.id), class: "action -underlined -view" %>
                         </td>
                         <td class="actions" data-th="Ações">
                             <%= link_to 'Ver', compra_path(compra), class: "action -underlined -view" %>
