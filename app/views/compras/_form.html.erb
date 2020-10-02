@@ -133,12 +133,11 @@
 
                 <!-- apenas se o usuário for admin -->
                 <% if session[:papel_id] == "Administrador" %>
-                    <h1 class="legend">Informar cliente</h1>
+                    <h1 class="legend">Selecione o cliente</h1>
                     <fieldset class="fieldset -cliente">
-                        <%= form.select :usuario, Usuario.all.collect{|u| [u.nome + " - " + u.email , u.email]}, {:prompt => 'Selecione o Cliente'}, class: "select", :required => true %>
+                        <%= form.select :cliente_id, Usuario.all.collect{|u| [u.nome + " - " + u.email , u.id]}, {:prompt => 'Selecione o Cliente'}, class: "select", :required => true %>
                     </fieldset>
                 <% else %>
-                    <%= form.hidden_field :usuario, value: current_usuario.email %>
                     <% cliente = Cliente.find_by(usuario_id: current_usuario.id) %>
                     <%= form.hidden_field :cliente_id, value: cliente.id %>
                 <% end %>

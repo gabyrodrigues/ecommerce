@@ -33,7 +33,9 @@ if(body.classList.contains("compras-checkout") || body.classList.contains("compr
             next_button.classList.add("-hidden");
             finish_button.classList.add("-visible");
         } else {
+            next_button.classList.remove("-hidden");
             next_button.innerHTML = "Próximo";
+            finish_button.classList.remove("-visible");
         }
         //... and run a function that will display the correct step indicator:
         fixStepIndicator(n);

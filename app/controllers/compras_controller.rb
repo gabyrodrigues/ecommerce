@@ -88,7 +88,15 @@ class ComprasController < ApplicationController
     def create
         @produtos = get_produtos
 
+
+
         @compra = Compra.new(compra_params)
+
+        if session[:papel_id] == "Administrador"
+            cliente = Cliente.find_by(usuario_id: params[:compra][:cliente_id])
+            @compra.cliente_id = cliente.id
+        end
+
         @compra.data = Date.today
         @compra.hora = Time.now.strftime("%H:%M:%S")
         @compra.valor_total = params[:compra][:valor_total].to_f
