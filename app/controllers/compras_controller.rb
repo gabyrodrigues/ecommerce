@@ -45,11 +45,9 @@ class ComprasController < ApplicationController
 
     def buscar_diario
         if params[:data_inicio].blank? || params[:data_fim].blank?
-            @compras = Compra.all
+            @compras_diario = Compra.all
         else
-            @list_compras_diario = Compra.where('data BETWEEN ? AND ?', params[:data_inicio], params[:data_fim]).order("data DESC").group(:id, :data)
-            @compras_diario = @list_compras_diario.group_by { |c| c.data.to_date }
-            # raise @compras_diario.inspect
+            @compras_diario = Compra.group(:data).select("sum(valor_total), data").where('data BETWEEN ? AND ?', params[:data_inicio], params[:data_fim]).order("data DESC").sum(:valor_total)
         end
 
         render :inline => render_to_string(:partial => 'relatorio_diario')
@@ -57,10 +55,9 @@ class ComprasController < ApplicationController
 
     def buscar_cliente
         if params[:data_inicio].blank? || params[:data_fim].blank?
-            @compras = Compra.all
+            @compras_cliente = Compra.all
         else
-            @list_compras_cliente = Compra.where('data BETWEEN ? AND ?', params[:data_inicio], params[:data_fim]).order("data DESC").group(:id, :data, :cliente_id)
-            @compras_cliente = @list_compras_cliente.group_by { |c| [c.data.to_date, c.cliente_id] }
+            @compras_cliente = Compra.group("compras.cliente_id").select("compras.cliente_id").where('data BETWEEN ? AND ?', params[:data_inicio], params[:data_fim]).order("COUNT(compras.cliente_id) DESC").count("compras.cliente_id")
             # raise @compras_cliente.inspect
         end
 
@@ -81,15 +78,13 @@ class ComprasController < ApplicationController
 
     # GET /compras/1/edit
     def edit
+        @produtos = ProdutosCompra.where(compra_id: params[:id])
     end
 
     # POST /compras
     # POST /compras.json
     def create
         @produtos = get_produtos
-
-
-
         @compra = Compra.new(compra_params)
 
         if session[:papel_id] == "Administrador"

@@ -8,11 +8,12 @@
         </thead>
 
         <tbody class="table-info" >
-            <% @compras_diario.each do |compra| %>
-            <!-- <%#= raise compra.inspect %> -->
+            <% @compras_diario.each do |data, total| %>
                 <tr class="list">
-                    <td class="item -data" data-th="Data"><%= compra[1][0].data.strftime("%d/%m/%Y") %></td>
-                    <td class="item -total" data-th="Total recebido">R$ <%= number_with_precision(compra[1][0].valor_total, :precision => 2, separator: ",", :delimiter => '.')%></td>
+                    <td class="item -data" data-th="Data"><%= data.strftime("%d/%m/%Y") %></td>
+                    <td class="item -total" data-th="Total recebido">
+                        R$ <%= number_with_precision(total, :precision => 2, separator: ",", :delimiter => '.')%>
+                    </td>
                 </tr>
             <% end %>
         </tbody>

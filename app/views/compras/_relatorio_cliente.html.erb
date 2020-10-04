@@ -2,7 +2,7 @@
     <table class="table">
         <thead>
             <tr class="table-heading">
-                <th class="item -compra">Compra ID</th>
+                <th class="item -compra">Cliente ID</th>
                 <th class="item -name">Nome do cliente</th>
                 <th class="item -email">Email do cliente</th>
                 <th class="item -id">Quantidade de compras</th>
@@ -10,12 +10,13 @@
         </thead>
 
         <tbody class="table-info">
-            <% @compras_cliente.each do |compra| %>
+            <% @compras_cliente.each do |cliente, quantidade| %>
             <tr class="list">
-                <td class="item -compra" data-th="Compra ID"><%= compra[1][0].cliente_id %></td>
-                <td class="item -name" data-th="Nome"><%= compra[1][0].cliente.usuario.nome %></td>
-                <td class="item -email" data-th="Email"><%= compra[1][0].cliente.usuario.email %></td>
-                <td class="item -qty" data-th="Quantidade de compras"><%= compra.count %></td>
+                <td class="item -compra" data-th="Cliente ID"><%= cliente %></td>
+                <% dados_cliente = Cliente.find(cliente) %>
+                <td class="item -name" data-th="Nome"><%= dados_cliente.usuario.nome %></td>
+                <td class="item -email" data-th="Email"><%= dados_cliente.usuario.email %></td>
+                <td class="item -qty" data-th="Quantidade de compras"><%= quantidade %></td>
             </tr>
             <% end %>
         </tbody>
