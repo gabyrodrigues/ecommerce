@@ -58,7 +58,6 @@ class ComprasController < ApplicationController
             @compras_cliente = Compra.all
         else
             @compras_cliente = Compra.group("compras.cliente_id").select("compras.cliente_id").where('data BETWEEN ? AND ?', params[:data_inicio], params[:data_fim]).order("COUNT(compras.cliente_id) DESC").count("compras.cliente_id")
-            # raise @compras_cliente.inspect
         end
 
         render :inline => render_to_string(:partial => 'relatorio_cliente')

@@ -6,7 +6,8 @@ class ProdutosController < ApplicationController
     # GET /produtos
     # GET /produtos.json
     def index
-        @produtos = Produto.all
+        @produtos = Produto.where("quantidade >= ?", 1).order("nome ASC")
+        @produtos_sem_estoque = Produto.where("quantidade < ?", 1).order("nome ASC")
     end
 
     def catalogo
