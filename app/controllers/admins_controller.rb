@@ -16,15 +16,15 @@ class AdminsController < ApplicationController
 
     def criar
         respond_to do |format|
-            if Usuario.verificar_email(params[:email])
+            if !Usuario.verificar_email(params[:email])
+                flash[:notice] =  'Email já cadastrado no sistema.'
+                format.js {render inline: "location.reload();" }
+            else
                 usuario = Usuario.invite!(:email => params[:email], :nome => params[:nome])
                 @admin = Admin.create(usuario_id: usuario.id)
 
                 flash[:notice] =  'Convite enviado com sucesso!'
 				format.js {render inline: "location.href='/admins/view?email=#{params[:email]}'"}
-            else
-                flash[:notice] =  'Email já cadastrado no sistema.'
-                format.js {render inline: "location.reload();" }
             end
         end
     end
@@ -49,9 +49,28 @@ class AdminsController < ApplicationController
 
     def destroy
         @usuario = Usuario.find_by(email: params[:email])
+        @admin = Admin.find_by(usuario_id: @usuario.id)
+
+        @compras = Compra.where(cliente_id: admin.id)
+
+        @compras_produtos_clientes = ComprasProdutosCliente.where(cliente_id: admin.id)
+
+        @compras_produtos_clientes.each do |compras_produtos_cliente|
+            compras_produtos_cliente.destroy
+        end
+
+        @compras.each do |compra|
+            @produtos_compras = ProdutosCompra.where(compra_id: compra.id)
+
+            @produtos_compras.each do |produtos_compra|
+                produtos_compra.destroy
+            end
+
+            compra.destroy
+        end
 
         Cliente.find_by(usuario_id: @usuario).destroy
-        Admin.find_by(usuario_id: @usuario).destroy
+        @admin.destroy
 
         @usuario.destroy
 

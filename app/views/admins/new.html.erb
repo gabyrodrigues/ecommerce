@@ -9,7 +9,7 @@
             <p class="note">Convide um usuário para ser administrador da loja</p>
         </div>
 
-        <%= form_with(url: "/admins/criar", method: "get", class: "form-register") do |f| %>
+        <%= form_with(url: "/admins/criar", method: "post", class: "form-register") do |f| %>
             <div class="block -admin">
                 <fieldset class="fieldset -name">
                     <%= f.label :nome, "Nome", class: "label" %>

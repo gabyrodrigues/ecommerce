@@ -36,11 +36,9 @@ class ComprasController < ApplicationController
     end
 
     def relatorio
-        @list_compras_diario = Compra.where('data BETWEEN ? AND ?', Date.today, Date.today).order("data DESC").group(:id, :data)
-        @compras_diario = @list_compras_diario.group_by { |c| c.data }
+        @compras_diario = Compra.group(:data).select("sum(valor_total), data").where('data BETWEEN ? AND ?', Date.today, Date.today).order("data DESC").sum(:valor_total)
 
-        @list_compras_cliente = Compra.where('data BETWEEN ? AND ?', params[:data_inicio], params[:data_fim]).order("data DESC").group(:id, :data, :cliente_id)
-        @compras_cliente = @list_compras_cliente.group_by { |c| [c.data.to_date, c.cliente_id] }
+        @compras_cliente = Compra.group("compras.cliente_id").select("compras.cliente_id").where('data BETWEEN ? AND ?', Date.today, Date.today).order("COUNT(compras.cliente_id) DESC").count("compras.cliente_id")
     end
 
     def buscar_diario

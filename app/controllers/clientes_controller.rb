@@ -49,8 +49,22 @@ class ClientesController < ApplicationController
     def destroy
         @usuario = Usuario.find_by(email: params[:email])
 
-        Cliente.find_by(usuario_id: @usuario).destroy
+        @cliente = Cliente.find_by(usuario_id: @usuario)
 
+
+        @compras = Compra.where(cliente_id: @cliente.id)
+
+        @compras.each do |compra|
+            @produtos_compras = ProdutosCompra.where(compra_id: compra.id)
+
+            @produtos_compras.each do |produtos_compra|
+                produtos_compra.destroy
+            end
+
+            compra.destroy
+        end
+
+        @cliente.destroy
         @usuario.destroy
 
         respond_to do |format|

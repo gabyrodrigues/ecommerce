@@ -33,8 +33,6 @@ function addToCart(produto, img_url, qtd) {
 
         carrinho.push(produto_values);
         localStorage.setItem('carrinho', JSON.stringify(carrinho));
-
-        console.log(carrinho);
     }
 
     tocart_alert.classList.add("-visible");
@@ -76,7 +74,6 @@ function setCart() {
     $(".cart-options").empty();
 
     let carrinho_log = JSON.parse(localStorage.getItem('carrinho'));
-    console.log(carrinho_log);
 
     if (carrinho_log !== 0) {
         $(".finish-shopping").append(`
