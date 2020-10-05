@@ -1,0 +1,26 @@
+<div class="checkout-products">
+    <ul class="list">
+        <%@valor_total = 0%>
+        <% @produtos.each do |produto| %>
+            <li class="product">
+                <div class="minimal-details">
+                    <div class="image">
+                        <span class="qty"><%= produto.quantidade%></span>
+                        <%=  image_tag produto.produto.foto, class: "img", alt: "Imagem do produto" %>
+                    </div>
+
+                    <div class="attributes">
+                        <h3 class="name"><%= produto.produto.nome %></h3>
+                    </div>
+                    <% @total = produto.quantidade.to_i*produto.produto.preco.to_f %>
+                    <div class="price">
+                        <span class="subtotal">R$ <%= produto.produto.preco.blank? ? "0.0" : number_with_precision(produto.produto.preco.blank? ? "0.0" : produto.produto.preco, :precision => 2, separator: ",", :delimiter => '.')%></span>
+                    </div>
+                </div>
+            </li>
+
+            <% @valor_total =  @valor_total + @total %>
+        <% end %>
+
+    </ul>
+</div>

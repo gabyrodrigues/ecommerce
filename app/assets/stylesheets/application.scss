@@ -951,6 +951,7 @@ body {
             }
 
             @include breakpoint(tablet) {
+                min-width: 190px;
                 text-align: right;
                 vertical-align: middle;
 
@@ -982,7 +983,8 @@ body {
     }
 }
 
-.search-box {
+.search-box,
+.form-status {
     display: flex;
     justify-content: center;
     margin-bottom: $spacing;
@@ -1013,6 +1015,16 @@ body {
             @include breakpoint(mobile) {
                 min-height: 40px;
             }
+        }
+
+        > .select {
+            background: $background-color-white url(asset_path('select-bg.svg')) no-repeat 100% 45%;
+            background-color: $background-color-white;
+            background-position: top 45% right 7px;
+            background-size: 30px 60px;
+            outline: none;
+            padding-right: 40px;
+            -webkit-appearance: none;
         }
 
 

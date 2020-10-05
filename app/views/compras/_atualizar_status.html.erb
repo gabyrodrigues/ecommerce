@@ -1,0 +1,14 @@
+<div class="container-info -atualizarstatus">
+    <div class="wrapper">
+        <%= form_tag('/compras/atualizar_status', class: "form-status") do %>
+            <%= hidden_field_tag :id, @compra.id%>
+
+            <div class="fieldset">
+                <%= select_tag(:status, options_for_select(["Solicitado","Pagamento aprovado", "Faturado","Em rota", "Entregue"], @compra.status), { prompt: "Status", :class => "select", :required => true }) %>
+            </div>
+            <div class="actions">
+                <%= submit_tag 'Atualizar', class: "action -update" %>
+            </div>
+        <% end %>
+    </div>
+</div>

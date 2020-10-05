@@ -10,6 +10,7 @@ Rails.application.routes.draw do
             post 'cart_save'
             get 'buscar_diario'
             get 'buscar_cliente'
+            match 'atualizar_status', via: [:get, :post]
         end
     end
 

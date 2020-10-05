@@ -108,18 +108,28 @@ class ComprasController < ApplicationController
         end
     end
 
+    def atualizar_status
+        @compra = Compra.find(params[:id])
+        @compra.update(status: params[:status])
+
+        respond_to do |format|
+            format.html { redirect_to @compra, notice: 'Status atualizado com sucesso.' }
+            format.json { render :show, status: :ok, location: @compra }
+        end
+    end
+
     # PATCH/PUT /compras/1
     # PATCH/PUT /compras/1.json
     def update
-        # respond_to do |format|
-        #   if @compra.update(compra_params)
-        #     format.html { redirect_to @compra, notice: 'Compra was successfully updated.' }
-        #     format.json { render :show, status: :ok, location: @compra }
-        #   else
-        #     format.html { render :edit }
-        #     format.json { render json: @compra.errors, status: :unprocessable_entity }
-        #   end
-        # end
+        respond_to do |format|
+          if @compra.update(compra_params)
+            format.html { redirect_to @compra, notice: 'Compra atualizada com sucesso.' }
+            format.json { render :show, status: :ok, location: @compra }
+          else
+            format.html { render :edit }
+            format.json { render json: @compra.errors, status: :unprocessable_entity }
+          end
+        end
     end
 
     # DELETE /compras/1

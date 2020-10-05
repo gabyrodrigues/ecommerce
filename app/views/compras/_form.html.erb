@@ -47,36 +47,45 @@
     <div class="checkout-wizard">
         <div class="wrapper">
             <div class="tab">
-                <h2 class="title">Quantidade de itens no carrinho: <%= @produtos.count %></h2>
+                <h2 class="title">Quantidade de itens: <%= @produtos.count %></h2>
                 <div class="summary-container">
-                    <div class="checkout-products">
-                        <ul class="list">
-                            <%@valor_total = 0%>
-                            <% @produtos.each do |produto| %>
-                                <li class="product">
-                                    <div class="minimal-details">
-                                        <div class="image">
-                                            <span class="qty"><%= produto[:quantidade]%></span>
-                                            <%=  image_tag produto[:produto].foto, class: "img", alt: "Imagem do produto" %>
-                                        </div>
+                    <%@valor_total = 0%>
+                    <%if params[:action] != "edit"%>
+                        <div class="checkout-products">
+                            <ul class="list">
+                                <%@valor_total = 0%>
+                                <% @produtos.each do |produto| %>
+                                    <li class="product">
+                                        <div class="minimal-details">
+                                            <div class="image">
+                                                <span class="qty"><%= produto[:quantidade]%></span>
+                                                <%=  image_tag produto[:produto].foto, class: "img", alt: "Imagem do produto" %>
+                                            </div>
 
-                                        <div class="attributes">
-                                            <h3 class="name"><%= produto[:produto][:nome] %></h3>
+                                            <div class="attributes">
+                                                <h3 class="name"><%= produto[:produto][:nome] %></h3>
+                                            </div>
+                                            <% @total = produto[:quantidade].to_i*produto[:produto][:preco].to_f %>
+                                            <div class="price">
+                                                <span class="subtotal">R$ <%= produto[:produto][:preco].blank? ? "0.0" : number_with_precision(produto[:produto][:preco].blank? ? "0.0" : produto[:produto][:preco], :precision => 2, separator: ",", :delimiter => '.')%></span>
+                                            </div>
                                         </div>
-                                        <% @total = produto[:quantidade].to_i*produto[:produto][:preco].to_f %>
-                                        <div class="price">
-                                            <span class="subtotal">R$ <%= produto[:produto][:preco].blank? ? "0.0" : number_with_precision(produto[:produto][:preco].blank? ? "0.0" : produto[:produto][:preco], :precision => 2, separator: ",", :delimiter => '.')%></span>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
 
-                                <% @valor_total =  @valor_total + @total %>
-                            <% end %>
-                        </ul>
-                    </div>
+                                    <% @valor_total =  @valor_total + @total %>
+                                <% end %>
+
+                            </ul>
+                        </div>
+                    <%else%>
+                        <%= render 'edit_form' %>
+                    <%end%>
+
                     <div class="heading">
                         <h2 class="title">Subtotal</h2>
-                        <h2 class="price">R$ <%= @valor_total.blank? ? "0.0" : number_with_precision(@valor_total.blank? ? "0.0" : @valor_total, :precision => 2, separator: ",", :delimiter => '.')%></h2>
+                        <h2 class="price">
+                            R$ <%= @valor_total.blank? ? "0.0" : number_with_precision(@valor_total.blank? ? "0.0" : @valor_total, :precision => 2, separator: ",", :delimiter => '.')%>
+                        </h2>
                     </div>
                 </div>
                 <%= form.hidden_field :valor_total, value: @valor_total + 10%>
