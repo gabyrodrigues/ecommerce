@@ -65,7 +65,13 @@ Com esse comando, todas a lista de dependências necessárias para o projeto fun
   $ rails db:migrate
 ```
 
-5. Subindo o servidor local:
+5. Criando os registros no banco de dados:
+```
+  ## Ao rodar o arquivo seed, os registros de um usuário administrador são criados, sendo mais fácil para acessar todas as funcionalidades no sistema
+  $ rails db:seed
+```
+
+6. Subindo o servidor local:
 ```
   ## Após rodar esse comando, a aplicação já estará pronta para ser acessada em http://localhost:3000/
   $ rails s
